@@ -1,0 +1,60 @@
+# NBA Teams
+
+This page is related to /nba-teams.
+
+## All entries
+
+##### GET /api/v1/nba-teams
+
+```json
+[
+  {
+    "id": 1,
+    "city": "Atlanta",
+    "conference": "East",
+    "division": "Southeast",
+    "full_name": "Atlanta Hawks",
+    "name": "Hawks"
+  },
+  {
+    "id": 2,
+    "city": "Boston",
+    "conference": "East",
+    "division": "Atlantic",
+    "full_name": "Boston Celtics",
+    "name": "Celtics"
+  }
+  // ...
+]
+```
+
+## Single entry
+
+##### GET /api/v1/nba-teams/\<id>
+
+```json
+// GET /api/v1/nba-teams/1
+{
+  "id": 1,
+  "city": "Atlanta",
+  "conference": "East",
+  "division": "Southeast",
+  "full_name": "Atlanta Hawks",
+  "name": "Hawks"
+}
+```
+
+## Random entry
+
+##### GET /api/v1/nba-teams/random
+
+```json
+{
+  "id": 5,
+  "city": "Chicago",
+  "conference": "East",
+  "division": "Central",
+  "full_name": "Chicago Bulls",
+  "name": "Bulls"
+}
+```
