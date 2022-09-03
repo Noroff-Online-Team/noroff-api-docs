@@ -1,14 +1,12 @@
 # Authentication
 
-Unless the endpoint specifically mentions that it requires authentication, you can use that endpoint freely.
+**Unless the endpoint specifically mentions that it requires authentication, you can use that endpoint freely without supplying an access token.**
 
-Some endpoints may require you to be authenticated. This is done by sending an `Authorization` header along with your access token.
+Some endpoints may require you to be authenticated. This is done by sending an `Authorization` header with your access token along with your request.
 
 ## Access token
 
-In order to receive an access token you will need to login. You do this by sending a `POST` request to the `/api/v1/auth/login` endpoint with the following body:
-
-- `username` - Your username as a string.
+In order to receive an access token you will need to login. You can do this by sending a `POST` request to the `/api/v1/auth/login` endpoint with your username in the request body.
 
 ##### POST /api/v1/auth/login
 
@@ -37,6 +35,6 @@ const options = {
   },
 }
 
-const response = await fetch('.../api/v1/quotes', options)
+const response = await fetch(`${API_BASE_URL}/api/v1/quotes`, options)
 const data = await response.json()
 ```
