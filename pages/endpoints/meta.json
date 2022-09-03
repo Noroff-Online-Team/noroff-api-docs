@@ -1,3 +1,9 @@
 {
-  "status": "Status"
+  "status": "Status",
+  "books": "Books",
+  "cat-facts": "Cat Facts",
+  "jokes": "Jokes",
+  "nba-teams": "NBA Teams",
+  "old-games": "Old Games",
+  "quotes": "Quotes"
 }
