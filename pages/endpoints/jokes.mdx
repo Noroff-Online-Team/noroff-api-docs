@@ -1,0 +1,52 @@
+# Jokes
+
+This page is related to /jokes.
+
+## All entries
+
+##### GET /api/v1/jokes
+
+```json
+[
+  {
+    "id": 1,
+    "type": "general",
+    "setup": "What did the fish say when it hit the wall?",
+    "punchline": "Dam."
+  },
+  {
+    "id": 2,
+    "type": "general",
+    "setup": "How do you make a tissue dance?",
+    "punchline": "You put a little boogie on it."
+  }
+  // ...
+]
+```
+
+## Single entry
+
+##### GET /api/v1/jokes/\<id>
+
+```json
+// GET /api/v1/jokes/1
+{
+  "id": 1,
+  "type": "general",
+  "setup": "What did the fish say when it hit the wall?",
+  "punchline": "Dam."
+}
+```
+
+## Random entry
+
+##### GET /api/v1/jokes/random
+
+```json
+{
+  "id": 120,
+  "type": "general",
+  "setup": "How do locomotives know where they're going?",
+  "punchline": "Lots of training"
+}
+```

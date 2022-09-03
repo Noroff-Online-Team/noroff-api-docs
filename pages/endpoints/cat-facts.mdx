@@ -1,0 +1,44 @@
+# Cat Facts
+
+This page is related to /cat-facts.
+
+## All entries
+
+##### GET /api/v1/cat-facts
+
+```json
+[
+  {
+    "id": 1,
+    "text": "On average, cats spend 2/3 of every day sleeping"
+  },
+  {
+    "id": 2,
+    "text": "Unlike dogs, cats do not have a sweet tooth"
+  }
+  // ...
+]
+```
+
+## Single entry
+
+##### GET /api/v1/cat-facts/\<id>
+
+```json
+// GET /api/v1/cat-facts/1
+{
+  "id": 1,
+  "text": "On average, cats spend 2/3 of every day sleeping"
+}
+```
+
+## Random entry
+
+##### GET /api/v1/cat-facts/random
+
+```json
+{
+  "id": 70,
+  "text": "Genetically, cats' brains are more similar to that of a human than a dog's brain"
+}
+```
