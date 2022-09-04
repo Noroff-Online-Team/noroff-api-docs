@@ -1,0 +1,189 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Posts
+
+<Callout type="warning" emoji="⚠️">
+  These are authenticated endpoints. You can visit
+  [authentication](./authentication) to get an access token.
+</Callout>
+
+## All entries
+
+#### GET /api/v1/social/posts
+
+You can supply `?comments=true&reactions=true` as a query string to include comments and reactions to the posts. These are not included by default.
+
+```json
+[
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "string",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z",
+    "author": {
+      "name": "string",
+      "email": "user@example.com",
+      "avatar": "string"
+    },
+    "reactions": [
+      {
+        "symbol": "string",
+        "count": 0,
+        "postId": 0,
+        "message": "string"
+      }
+    ],
+    "comments": [
+      {
+        "body": "string",
+        "id": 0,
+        "postId": 0,
+        "owner": "string",
+        "created": "2022-09-04T08:17:59.383Z"
+      }
+    ]
+  },
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "string",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z",
+    "author": {
+      "name": "string",
+      "email": "user@example.com",
+      "avatar": "string"
+    },
+    "reactions": [
+      {
+        "symbol": "string",
+        "count": 0,
+        "postId": 0,
+        "message": "string"
+      }
+    ],
+    "comments": [
+      {
+        "body": "string",
+        "id": 0,
+        "postId": 0,
+        "owner": "string",
+        "created": "2022-09-04T08:17:59.383Z"
+      }
+    ]
+  }
+  // ...
+]
+```
+
+## Single entry
+
+#### GET /api/v1/social/posts/\<id>
+
+You can supply `?comments=true&reactions=true` as a query string to include comments and reactions to the post. These are not included by default.
+
+```json
+// GET /api/v1/social/posts/1
+{
+  "id": 0,
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string",
+  "created": "2022-09-04T08:08:38.830Z",
+  "updated": "2022-09-04T08:08:38.830Z",
+  "author": {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "string"
+  },
+  "reactions": [
+    {
+      "symbol": "string",
+      "count": 0,
+      "postId": 0,
+      "message": "string"
+    }
+  ],
+  "comments": [
+    {
+      "body": "string",
+      "id": 0,
+      "postId": 0,
+      "owner": "string",
+      "created": "2022-09-04T08:17:59.383Z"
+    }
+  ]
+}
+```
+
+## Create entry
+
+#### POST /api/v1/social/posts
+
+```json
+{
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string"
+}
+```
+
+## Update entry
+
+#### PUT /api/v1/social/posts/\<id>
+
+Update an entry based on its id. Returns the updated entry.
+
+```json
+{
+  "owner": "string",
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string"
+}
+```
+
+## Delete entry
+
+#### DELETE /api/v1/social/posts/\<id>
+
+Delete an entry based on its id. Returns an empty object.
+
+```json
+{}
+```
+
+## React to entry
+
+#### GET /api/v1/social/posts/\<id>/react/\<symbol>
+
+React to an entry with a symbol. Returns the reaction count for that symbol, the post, and the post id.
+
+```json
+{
+  "symbol": "string",
+  "count": "number",
+  "postId": "number",
+  "message": "string"
+}
+```
+
+## Comment on entry
+
+#### POST /api/v1/social/posts/\<id>/comment
+
+Comment on an entry. Returns the comment.
+
+```json
+{
+  "body": "string"
+}
+```
