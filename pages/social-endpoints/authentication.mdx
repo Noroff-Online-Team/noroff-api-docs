@@ -18,11 +18,11 @@ This endpoint will register a new user profile. You will need to send all of the
 
 ```json
 {
-  "name": "my_username",                          // Required
-  "email": "first.last@noroff.no",                // Required
-  "password": "UzI1NiIsInR5cCI",                  // Required
+  "name": "my_username", // Required
+  "email": "first.last@noroff.no", // Required
+  "password": "UzI1NiIsInR5cCI", // Required
   "avatar": "https://img.service.com/avatar.jpg", // Optional
-  "banner": "https"//img.service.com/banner.jpg"  // Optional
+  "banner": "https://img.service.com/banner.jpg" // Optional
 }
 ```
 
@@ -42,7 +42,7 @@ You can use this endpoint to login with your registered user. You will need to s
 
 ```json
 {
-  "email": "first.last@noroff.no",
+  "email": "first.last@stud.noroff.no",
   "password": "UzI1NiIsInR5cCI"
 }
 ```
@@ -51,9 +51,9 @@ In return you will receive a response with the following body:
 
 ```json
 {
-  "name": "string",
-  "email": "user@example.com",
-  "avatar": "string",
+  "name": "my_username",
+  "email": "first.last@stud.noroff.no",
+  "avatar": "https://img.service.com/avatar.jpg",
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 }
 ```
