@@ -1,0 +1,235 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Posts
+
+<Callout type="warning" emoji="⚠️">
+  These are authenticated endpoints. You can visit
+  [authentication](./authentication) to get an access token.
+</Callout>
+
+## Post Model
+
+The basic post response object has the following properties:
+
+```json
+// GET /api/v1/social/posts/0
+{
+  "id": 0,
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string",
+  "created": "2022-09-04T08:08:38.830Z",
+  "updated": "2022-09-04T08:08:38.830Z",
+  "owner": "string"
+}
+```
+
+Using the optional `_flag` query parameters available it is possible to access `author`, `comments` and `reactions` within this response object. For example:
+
+```json
+// GET /api/v1/social/posts/0?_author=true&_comments=true&reactions=true
+{
+  "id": 0,
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string",
+  "created": "2022-09-04T08:08:38.830Z",
+  "updated": "2022-09-04T08:08:38.830Z",
+  "author": {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "string"
+  },
+  "reactions": [
+    {
+      "symbol": "string",
+      "count": 0,
+      "postId": 0,
+      "message": "string"
+    }
+  ],
+  "comments": [
+    {
+      "body": "string",
+      "id": 0,
+      "postId": 0,
+      "owner": "string",
+      "created": "2022-09-04T08:17:59.383Z"
+    }
+  ]
+}
+```
+
+## All entries
+
+#### GET /api/v1/social/posts
+
+This endpoint returns all registered profiles in an array.
+
+```json
+// GET /api/v1/social/posts/
+[
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "string",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z",
+    "owner": "string"
+  },
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "string",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z",
+    "owner": "string"
+  }
+  // ...
+]
+```
+
+The list of items can be sorted with the `sort` & `sortOrder` flags:
+
+```json
+// GET /api/v1/social/posts?sort=created&sortOrder=desc
+// GET /api/v1/social/posts?sort=title&sortOrder=asc
+```
+
+Lists can be sorted by any item properties, in the order ascending (`asc`) or descending (`desc`).
+
+## Single entry
+
+This endpoint returns a single registered endpoint.
+
+```json
+// GET /api/v1/social/posts/0
+{
+  "id": 0,
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string",
+  "created": "2022-09-04T08:08:38.830Z",
+  "updated": "2022-09-04T08:08:38.830Z",
+  "owner": "string"
+}
+```
+
+> Use `_author`, `_comments` and/or `_reactions` flags to get more data from this request.
+
+## Create entry
+
+This endpoint allows for the creation of a new post. The `title` property is required. The request body contains:
+
+```json
+{
+  "title": "string",   // Required
+  "body": "string",    // Optional
+  "tags": ["string"],  // Optional
+  "media": "string"    // Optional
+}
+```
+
+The response body contains:
+
+```json
+// POST /api/v1/social/posts
+{
+  "id": 0,
+  "owner": "string",
+  "created": "2022-09-04T16:21:02.042Z",
+  "updated": "2022-09-04T16:21:02.042Z",
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string"
+}
+```
+
+## Update entry
+
+This endpoint updates an entry based on its id and returns the updated entry.
+
+The request body contains:
+
+```json
+{
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string"
+}
+```
+
+The response body contains:
+
+```json
+// PUT /api/v1/social/posts/<id>
+{
+  "id": 0,
+  "owner": "string",
+  "created": "2022-09-04T16:21:02.044Z",
+  "updated": "2022-09-04T16:21:02.044Z",
+  "title": "string",
+  "body": "string",
+  "tags": ["string"],
+  "media": "string"
+}
+```
+
+## Delete entry
+
+This endpoint deletes an entry based on its id and returns nothing.
+
+```json
+// DELETE /api/v1/social/posts/\<id>
+```
+
+## React to entry
+
+React to an entry with a symbol. Returns the reaction count for that symbol, the post, and the post id.
+
+> You do not need to include a `body` value in this request.
+
+```json
+// PUT /api/v1/social/posts/<id>/react/<symbol>
+{
+  "symbol": "string",
+  "count": "number",
+  "postId": "number"
+}
+```
+
+## Comment on entry
+
+This endpoint allows a comment to be made on a post. The optional `replyToId` property can be used to link this comment to an existing comment.
+
+The request body contains:
+
+```json
+{
+  "body": "string",     // Required
+  "replyToId": "number" // Optional
+}
+```
+
+The response body contains:
+
+```json
+// POST /api/v1/social/posts/<id>/comment
+{
+  "body": "string",
+  "replyToId": 0,
+  "id": 0,
+  "postId": 0,
+  "owner": "string",
+  "created": "2022-09-04T16:29:07.175Z"
+}
+```

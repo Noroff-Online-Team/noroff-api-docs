@@ -1,0 +1,74 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Authentication
+
+<Callout>
+  This authentication is only related to the `/social` endpoints. If you're
+  looking for authentication for the `/quotes` endpoint, please see [this
+  documentation](/basic-endpoints/authentication).
+</Callout>
+
+These endpoints are used to authorize yourself with the API server. All `/social` routes require an authorization token to be included in the request.
+
+## Register
+
+#### POST /api/v1/social/auth/register
+
+This endpoint will register a new user profile. You will need to send all of the required values in your `POST` request:
+
+```json
+{
+  "name": "my_username", // Required
+  "email": "first.last@noroff.no", // Required
+  "password": "UzI1NiIsInR5cCI", // Required
+  "avatar": "https://img.service.com/avatar.jpg", // Optional
+  "banner": "https://img.service.com/banner.jpg" // Optional
+}
+```
+
+> The `name` value must not contain punctuation symbols apart from underscore (`_`).
+
+> The `email` value must be a valid `noroff.no` email address.
+
+> The `password` value must be at least 8 characters.
+
+You can now use your registered account to log in.
+
+## Login
+
+#### POST /api/v1/social/auth/login
+
+You can use this endpoint to login with your registered user. You will need to send the following body along with the POST request.
+
+```json
+{
+  "email": "first.last@stud.noroff.no",
+  "password": "UzI1NiIsInR5cCI"
+}
+```
+
+In return you will receive a response with the following body:
+
+```json
+{
+  "name": "my_username",
+  "email": "first.last@stud.noroff.no",
+  "avatar": "https://img.service.com/avatar.jpg",
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+}
+```
+
+You can now use this access token as the Bearer token in the `Authorization` header for all `/social` endpoints.
+
+#### Example of sending Authorization header.
+
+```js
+const options = {
+  headers: {
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....',
+  },
+}
+
+const response = await fetch(`${API_BASE_URL}/api/v1/social/posts`, options)
+const data = await response.json()
+```

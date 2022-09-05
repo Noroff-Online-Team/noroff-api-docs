@@ -1,14 +1,22 @@
+import Callout from 'nextra-theme-docs/callout'
+
 # Authentication
 
-**Unless the endpoint specifically mentions that it requires authentication, you can use that endpoint freely without supplying an access token.**
+<Callout>
+  This authentication is only related to the [`/quotes`](./quotes) endpoint. If
+  you're looking for authentication for the `/social` endpoints, please see the
+  [Social Auth](/social-endpoints/authentication) documentation.
+</Callout>
 
 Some endpoints may require you to be authenticated. This is done by sending an `Authorization` header with your access token along with your request.
 
-## Access token
+## Login
 
-In order to receive an access token you will need to login. You can do this by sending a `POST` request to the `/api/v1/auth/login` endpoint with your username in the request body.
+In order to receive an access token you will need to login. You do not need to register an account, you can simply login with any username.
 
-##### POST /api/v1/auth/login
+You can login by sending a `POST` request to the `/api/v1/auth/login` endpoint with your username in the request body.
+
+#### POST /api/v1/auth/login
 
 ```json
 {
@@ -26,8 +34,9 @@ In return you will receive a response with the following body:
 
 You can now use this access token as the Bearer token in the `Authorization` header for all endpoints that require authentication.
 
+#### Example of sending Authorization header.
+
 ```js
-// Example of sending Authorization header.
 const options = {
   headers: {
     'Content-Type': 'application/json',
