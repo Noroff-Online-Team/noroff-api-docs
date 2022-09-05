@@ -7,38 +7,175 @@ import Callout from 'nextra-theme-docs/callout'
   [authentication](./authentication) to get an access token.
 </Callout>
 
+## Profile Model
+
+The basic post response object has the following properties:
+
+```json
+// GET /api/v1/social/profiles/<name>
+{
+  "name": "string",
+  "email": "user@example.com",
+  "banner": "string",
+  "avatar": "string",
+  "_count": {
+    "posts": 0,
+    "followers": 0,
+    "following": 0
+  }
+}
+```
+
+Using the optional `_flag` query parameters available it is possible to access `posts`, `following` and `followers` within this response object. For example:
+
+```json
+// GET /api/v1/social/profiles/name?_posts=true&_following=true&_followers=true
+{
+  "name": "string",
+  "email": "user@example.com",
+  "banner": "string",
+  "avatar": "string",
+  "followers": [
+    {
+      "name": "string",
+      "avatar": "string"
+    }
+  ],
+  "following": [
+    {
+      "name": "string",
+      "avatar": "string"
+    }
+  ],
+  "posts": [
+    {
+      "id": 0,
+      "owner": "string",
+      "created": "2022-09-05T06:32:10.593Z",
+      "updated": "2022-09-05T06:32:10.593Z",
+      "title": "string",
+      "body": "string",
+      "tags": [
+        "string"
+      ],
+      "media": "string"
+    }
+  ],
+  "_count": {
+    "posts": 0,
+    "followers": 0,
+    "following": 0
+  }
+}
+```
+
 ## All entries
 
 #### GET /api/v1/social/profiles
 
+This endpoint returns a list of all registered profiles.
+
 ```json
 [
   {
-    "id": 1,
-    "type": "general",
-    "setup": "What did the fish say when it hit the wall?",
-    "punchline": "Dam."
+    "name": "string",
+    "email": "user@example.com",
+    "banner": "string",
+    "avatar": "string",
+    "_count": {
+      "posts": 0,
+      "followers": 0,
+      "following": 0
+    }
   },
   {
-    "id": 2,
-    "type": "general",
-    "setup": "How do you make a tissue dance?",
-    "punchline": "You put a little boogie on it."
+    "name": "string",
+    "email": "user@example.com",
+    "banner": "string",
+    "avatar": "string",
+    "_count": {
+      "posts": 0,
+      "followers": 0,
+      "following": 0
+    }
   }
-  // ...
 ]
 ```
 
 ## Single entry
 
-#### GET /api/v1/social/profiles/\<id>
+#### GET /api/v1/social/profiles/\<name>
+
+This endpoint returns a single registered profile.
 
 ```json
-// GET /api/v1/social/profiles/1
+// GET /api/v1/social/profiles/<name>
 {
-  "id": 1,
-  "type": "general",
-  "setup": "What did the fish say when it hit the wall?",
-  "punchline": "Dam."
+  "name": "string",
+  "email": "user@example.com",
+  "banner": "string",
+  "avatar": "string",
+  "_count": {
+    "posts": 0,
+    "followers": 0,
+    "following": 0
+  }
 }
 ```
+
+## Update entry media
+
+#### PUT /api/v1/social/profiles/\<name>/media
+
+This endpoint allows for profile `banner` and `avatar` images to be set. The request body contains:
+
+```json
+{
+  "banner": "string", // Optional
+  "avatar": "string", // Optional
+}
+```
+
+The response body contains:
+
+```json
+// PUT /api/v1/social/profiles/<name>
+{
+  "name": "string",
+  "email": "user@example.com",
+  "banner": "string",
+  "avatar": "string",
+  "_count": {
+    "posts": 0,
+    "followers": 0,
+    "following": 0
+  }
+},
+```
+
+## Follow & Unfollow Profile
+
+#### PUT /api/v1/social/profiles/\<name>/follow
+#### PUT /api/v1/social/profiles/\<name>/unfollow
+
+This endpoint allows for the current logged in user to follow or unfollow another registered profile.
+
+> The request body should be empty.
+
+The response body contains:
+
+```json
+// PUT /api/v1/social/profiles/<name>/follow
+{
+  "name": "string",
+  "email": "user@example.com",
+  "banner": "string",
+  "avatar": "string",
+  "_count": {
+    "posts": 0,
+    "followers": 0,
+    "following": 0
+  }
+},
+```
+  
