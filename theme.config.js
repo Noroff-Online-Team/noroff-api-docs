@@ -1,6 +1,6 @@
 export default {
-  github: 'https://github.com/jaaneh/noroff-api-docs',
-  docsRepositoryBase: 'https://github.com/jaaneh/noroff-api-docs/tree/main',
+  github: 'https://github.com/NoroffFEU/noroff-api-docs',
+  docsRepositoryBase: 'https://github.com/NoroffFEU/noroff-api-docs',
   titleSuffix: ' – Noroff API Documentation',
   logo: (
     <>

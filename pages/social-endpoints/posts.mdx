@@ -106,6 +106,8 @@ Lists can be sorted by any item properties, in the order ascending (`asc`) or de
 
 ## Single entry
 
+#### GET /api/v1/social/posts/\<id>
+
 This endpoint returns a single registered endpoint.
 
 ```json
@@ -126,14 +128,16 @@ This endpoint returns a single registered endpoint.
 
 ## Create entry
 
+#### POST /api/v1/social/posts
+
 This endpoint allows for the creation of a new post. The `title` property is required. The request body contains:
 
 ```json
 {
-  "title": "string",   // Required
-  "body": "string",    // Optional
-  "tags": ["string"],  // Optional
-  "media": "string"    // Optional
+  "title": "string",  // Required
+  "body": "string",   // Required
+  "tags": ["string"], // Optional
+  "media": "string"   // Optional
 }
 ```
 
@@ -154,6 +158,8 @@ The response body contains:
 ```
 
 ## Update entry
+
+#### PUT /api/v1/social/posts/\<id>
 
 This endpoint updates an entry based on its id and returns the updated entry.
 
@@ -186,13 +192,13 @@ The response body contains:
 
 ## Delete entry
 
+#### DELETE /api/v1/social/posts/\<id>
+
 This endpoint deletes an entry based on its id and returns nothing.
 
-```json
-// DELETE /api/v1/social/posts/\<id>
-```
-
 ## React to entry
+
+#### PUT /api/v1/social/posts/\<id>/react/\<symbol>
 
 React to an entry with a symbol. Returns the reaction count for that symbol, the post, and the post id.
 
@@ -208,6 +214,8 @@ React to an entry with a symbol. Returns the reaction count for that symbol, the
 ```
 
 ## Comment on entry
+
+#### POST /api/v1/social/posts/\<id>/comment
 
 This endpoint allows a comment to be made on a post. The optional `replyToId` property can be used to link this comment to an existing comment.
 
