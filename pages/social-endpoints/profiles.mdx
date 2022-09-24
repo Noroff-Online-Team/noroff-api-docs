@@ -55,9 +55,7 @@ Using the optional `_flag` query parameters available it is possible to access `
       "updated": "2022-09-05T06:32:10.593Z",
       "title": "string",
       "body": "string",
-      "tags": [
-        "string"
-      ],
+      "tags": ["string"],
       "media": "string"
     }
   ],
@@ -132,7 +130,7 @@ This endpoint allows for profile `banner` and `avatar` images to be set. The req
 ```json
 {
   "banner": "string", // Optional
-  "avatar": "string", // Optional
+  "avatar": "string" // Optional
 }
 ```
 
@@ -156,6 +154,7 @@ The response body contains:
 ## Follow & Unfollow Profile
 
 #### PUT /api/v1/social/profiles/\<name>/follow
+
 #### PUT /api/v1/social/profiles/\<name>/unfollow
 
 This endpoint allows for the current logged in user to follow or unfollow another registered profile.
@@ -178,4 +177,11 @@ The response body contains:
   }
 },
 ```
-  
+
+## Delete Profile
+
+#### DELETE /api/v1/social/profiles/\<name>/
+
+This endpoint deletes your profile and all associated posts and comments.
+
+> You can only delete your own profile.
