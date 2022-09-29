@@ -80,8 +80,8 @@ This endpoint returns a list of all registered profiles.
   {
     "name": "string",
     "email": "user@example.com",
-    "banner": "string",
-    "avatar": "string",
+    "banner": "https://url.com/image.jpg",
+    "avatar": "https://url.com/image.jpg",
     "_count": {
       "posts": 0,
       "followers": 0,
@@ -91,8 +91,8 @@ This endpoint returns a list of all registered profiles.
   {
     "name": "string",
     "email": "user@example.com",
-    "banner": "string",
-    "avatar": "string",
+    "banner": "https://url.com/image.jpg",
+    "avatar": "https://url.com/image.jpg",
     "_count": {
       "posts": 0,
       "followers": 0,
@@ -131,8 +131,8 @@ This endpoint allows for profile `banner` and `avatar` images to be set. The req
 
 ```json
 {
-  "banner": "string", // Optional
-  "avatar": "string", // Optional
+  "banner": "https://url.com/image.jpg", // Optional
+  "avatar": "https://url.com/image.jpg", // Optional
 }
 ```
 
@@ -143,8 +143,8 @@ The response body contains:
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
@@ -152,6 +152,8 @@ The response body contains:
   }
 },
 ```
+
+> Please note that post `avatar` and `banner` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
 
 ## Follow & Unfollow Profile
 
