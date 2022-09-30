@@ -137,9 +137,11 @@ This endpoint allows for the creation of a new post. The `title` property is req
   "title": "string",  // Required
   "body": "string",   // Required
   "tags": ["string"], // Optional
-  "media": "string"   // Optional
+  "media": "https://url.com/image.jpg"   // Optional
 }
 ```
+
+> Please note that post `media` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
 
 The response body contains:
 
@@ -153,7 +155,7 @@ The response body contains:
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string"
+  "media": "https://url.com/image.jpg"
 }
 ```
 
@@ -186,9 +188,11 @@ The response body contains:
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string"
+  "media": "https://url.com/image.jpg"
 }
 ```
+
+> Please note that post `media` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
 
 ## Delete entry
 
