@@ -18,29 +18,32 @@ The basic post response object has the following properties:
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string",
+  "media": "https://url.com/image.jpg",
   "created": "2022-09-04T08:08:38.830Z",
   "updated": "2022-09-04T08:08:38.830Z",
-  "owner": "string"
+  "_count": {
+    "comments": 0,
+    "reactions": 0
+  }
 }
 ```
 
 Using the optional `_flag` query parameters available it is possible to access `author`, `comments` and `reactions` within this response object. For example:
 
 ```json
-// GET /api/v1/social/posts/0?_author=true&_comments=true&reactions=true
+// GET /api/v1/social/posts/0?_author=true&_comments=true&_reactions=true
 {
   "id": 0,
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string",
+  "media": "https://url.com/image.jpg",
   "created": "2022-09-04T08:08:38.830Z",
   "updated": "2022-09-04T08:08:38.830Z",
   "author": {
     "name": "string",
     "email": "user@example.com",
-    "avatar": "string"
+    "avatar": "https://url.com/image.jpg"
   },
   "reactions": [
     {
@@ -53,6 +56,7 @@ Using the optional `_flag` query parameters available it is possible to access `
   "comments": [
     {
       "body": "string",
+      "replyToId": null, // or number if comment is reply to another comment
       "id": 0,
       "postId": 0,
       "owner": "string",
@@ -68,41 +72,49 @@ Using the optional `_flag` query parameters available it is possible to access `
 
 This endpoint returns all registered profiles in an array.
 
+> If you want to get all posts by a specific profile, you can use the [posts by profile](./profiles#all-posts-by-profile) endpoint.
+
 ```json
-// GET /api/v1/social/posts/
+// GET /api/v1/social/posts
 [
   {
     "id": 0,
     "title": "string",
     "body": "string",
     "tags": ["string"],
-    "media": "string",
+    "media": "https://url.com/image.jpg",
     "created": "2022-09-04T08:08:38.830Z",
     "updated": "2022-09-04T08:08:38.830Z",
-    "owner": "string"
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
   },
   {
     "id": 0,
     "title": "string",
     "body": "string",
     "tags": ["string"],
-    "media": "string",
+    "media": "https://url.com/image.jpg",
     "created": "2022-09-04T08:08:38.830Z",
     "updated": "2022-09-04T08:08:38.830Z",
-    "owner": "string"
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
   }
   // ...
 ]
 ```
 
-The list of items can be sorted with the `sort` & `sortOrder` flags:
+The list of posts can be sorted with the `sort` & `sortOrder` flags:
 
 ```json
 // GET /api/v1/social/posts?sort=created&sortOrder=desc
 // GET /api/v1/social/posts?sort=title&sortOrder=asc
 ```
 
-Lists can be sorted by any item properties, in the order ascending (`asc`) or descending (`desc`).
+Posts can be sorted by any post property, in ascending (`asc`) or descending (`desc`) order.
 
 ## Single entry
 
@@ -117,10 +129,13 @@ This endpoint returns a single registered endpoint.
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string",
+  "media": "https://url.com/image.jpg",
   "created": "2022-09-04T08:08:38.830Z",
   "updated": "2022-09-04T08:08:38.830Z",
-  "owner": "string"
+  "_count": {
+    "comments": 0,
+    "reactions": 0
+  }
 }
 ```
 
@@ -134,12 +149,14 @@ This endpoint allows for the creation of a new post. The `title` property is req
 
 ```json
 {
-  "title": "string",  // Required
-  "body": "string",   // Required
+  "title": "string", // Required
+  "body": "string", // Optional
   "tags": ["string"], // Optional
-  "media": "string"   // Optional
+  "media": "https://url.com/image.jpg" // Optional
 }
 ```
+
+> Please note that post `media` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
 
 The response body contains:
 
@@ -147,13 +164,16 @@ The response body contains:
 // POST /api/v1/social/posts
 {
   "id": 0,
-  "owner": "string",
-  "created": "2022-09-04T16:21:02.042Z",
-  "updated": "2022-09-04T16:21:02.042Z",
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string"
+  "media": "https://url.com/image.jpg",
+  "created": "2022-09-04T16:21:02.042Z",
+  "updated": "2022-09-04T16:21:02.042Z",
+  "_count": {
+    "comments": 0,
+    "reactions": 0
+  }
 }
 ```
 
@@ -170,7 +190,7 @@ The request body contains:
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string"
+  "media": "https://url.com/image.jpg"
 }
 ```
 
@@ -180,15 +200,20 @@ The response body contains:
 // PUT /api/v1/social/posts/<id>
 {
   "id": 0,
-  "owner": "string",
   "created": "2022-09-04T16:21:02.044Z",
   "updated": "2022-09-04T16:21:02.044Z",
   "title": "string",
   "body": "string",
   "tags": ["string"],
-  "media": "string"
+  "media": "https://url.com/image.jpg",
+  "_count": {
+    "comments": 0,
+    "reactions": 0
+  }
 }
 ```
+
+> Please note that post `media` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
 
 ## Delete entry
 
@@ -200,7 +225,7 @@ This endpoint deletes an entry based on its id and returns nothing.
 
 #### PUT /api/v1/social/posts/\<id>/react/\<symbol>
 
-React to an entry with a symbol. Returns the reaction count for that symbol, the post, and the post id.
+React to an entry with a symbol. Returns the symbol, reaction count for that symbol, and the post id.
 
 > You do not need to include a `body` value in this request.
 
@@ -208,8 +233,8 @@ React to an entry with a symbol. Returns the reaction count for that symbol, the
 // PUT /api/v1/social/posts/<id>/react/<symbol>
 {
   "symbol": "string",
-  "count": "number",
-  "postId": "number"
+  "count": 0,
+  "postId": 0
 }
 ```
 
@@ -223,8 +248,8 @@ The request body contains:
 
 ```json
 {
-  "body": "string",     // Required
-  "replyToId": "number" // Optional
+  "body": "string", // Required
+  "replyToId": 0 // Optional - Only required if replying to another comment
 }
 ```
 
@@ -234,7 +259,7 @@ The response body contains:
 // POST /api/v1/social/posts/<id>/comment
 {
   "body": "string",
-  "replyToId": 0,
+  "replyToId": null, // or replyToId number if provided in request
   "id": 0,
   "postId": 0,
   "owner": "string",

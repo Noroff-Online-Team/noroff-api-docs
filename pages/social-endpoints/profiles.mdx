@@ -16,8 +16,8 @@ The basic post response object has the following properties:
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
@@ -33,18 +33,18 @@ Using the optional `_flag` query parameters available it is possible to access `
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "followers": [
     {
       "name": "string",
-      "avatar": "string"
+      "avatar": "https://url.com/image.jpg"
     }
   ],
   "following": [
     {
       "name": "string",
-      "avatar": "string"
+      "avatar": "https://url.com/image.jpg"
     }
   ],
   "posts": [
@@ -56,7 +56,7 @@ Using the optional `_flag` query parameters available it is possible to access `
       "title": "string",
       "body": "string",
       "tags": ["string"],
-      "media": "string"
+      "media": "https://url.com/image.jpg"
     }
   ],
   "_count": {
@@ -78,8 +78,8 @@ This endpoint returns a list of all registered profiles.
   {
     "name": "string",
     "email": "user@example.com",
-    "banner": "string",
-    "avatar": "string",
+    "banner": "https://url.com/image.jpg",
+    "avatar": "https://url.com/image.jpg",
     "_count": {
       "posts": 0,
       "followers": 0,
@@ -89,8 +89,8 @@ This endpoint returns a list of all registered profiles.
   {
     "name": "string",
     "email": "user@example.com",
-    "banner": "string",
-    "avatar": "string",
+    "banner": "https://url.com/image.jpg",
+    "avatar": "https://url.com/image.jpg",
     "_count": {
       "posts": 0,
       "followers": 0,
@@ -111,14 +111,47 @@ This endpoint returns a single registered profile.
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
     "following": 0
   }
 }
+```
+
+## All posts by profile
+
+#### GET /api/v1/social/profiles/\<name>/posts
+
+This endpoint returns all posts by profile.
+
+The response is the same as the [posts](./posts#all-entries) endpoint, and accepts the same optional query parameters and flags.
+
+```json
+// GET /api/v1/social/profiles/<name>/posts
+[
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "https://url.com/image.jpg",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z"
+  },
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "https://url.com/image.jpg",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z"
+  }
+  // ...
+]
 ```
 
 ## Update entry media
@@ -129,8 +162,8 @@ This endpoint allows for profile `banner` and `avatar` images to be set. The req
 
 ```json
 {
-  "banner": "string", // Optional
-  "avatar": "string" // Optional
+  "banner": "https://url.com/image.jpg", // Optional
+  "avatar": "https://url.com/image.jpg" // Optional
 }
 ```
 
@@ -141,8 +174,8 @@ The response body contains:
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
@@ -150,6 +183,8 @@ The response body contains:
   }
 },
 ```
+
+> Please note that profile `avatar` and `banner` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
 
 ## Follow & Unfollow Profile
 
@@ -168,8 +203,8 @@ The response body contains:
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
@@ -177,11 +212,3 @@ The response body contains:
   }
 },
 ```
-
-## Delete Profile
-
-#### DELETE /api/v1/social/profiles/\<name>/
-
-This endpoint deletes your profile and all associated posts and comments.
-
-> You can only delete your own profile.
