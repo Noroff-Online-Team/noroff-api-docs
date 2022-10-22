@@ -16,8 +16,8 @@ The basic post response object has the following properties:
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
@@ -26,39 +26,25 @@ The basic post response object has the following properties:
 }
 ```
 
-Using the optional `_flag` query parameters available it is possible to access `posts`, `following` and `followers` within this response object. For example:
+Using the optional `_flag` query parameters available it is possible to access `following` and `followers` data within this response object. For example:
 
 ```json
-// GET /api/v1/social/profiles/name?_posts=true&_following=true&_followers=true
+// GET /api/v1/social/profiles/name?_following=true&_followers=true
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "followers": [
     {
       "name": "string",
-      "avatar": "string"
+      "avatar": "https://url.com/image.jpg"
     }
   ],
   "following": [
     {
       "name": "string",
-      "avatar": "string"
-    }
-  ],
-  "posts": [
-    {
-      "id": 0,
-      "owner": "string",
-      "created": "2022-09-05T06:32:10.593Z",
-      "updated": "2022-09-05T06:32:10.593Z",
-      "title": "string",
-      "body": "string",
-      "tags": [
-        "string"
-      ],
-      "media": "string"
+      "avatar": "https://url.com/image.jpg"
     }
   ],
   "_count": {
@@ -113,14 +99,47 @@ This endpoint returns a single registered profile.
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
     "following": 0
   }
 }
+```
+
+## All posts by profile
+
+#### GET /api/v1/social/profiles/\<name>/posts
+
+This endpoint returns all posts by profile.
+
+The response is the same as the [posts](./posts#all-entries) endpoint, and accepts the same optional query parameters and flags.
+
+```json
+// GET /api/v1/social/profiles/<name>/posts
+[
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "https://url.com/image.jpg",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z"
+  },
+  {
+    "id": 0,
+    "title": "string",
+    "body": "string",
+    "tags": ["string"],
+    "media": "https://url.com/image.jpg",
+    "created": "2022-09-04T08:08:38.830Z",
+    "updated": "2022-09-04T08:08:38.830Z"
+  }
+  // ...
+]
 ```
 
 ## Update entry media
@@ -132,7 +151,7 @@ This endpoint allows for profile `banner` and `avatar` images to be set. The req
 ```json
 {
   "banner": "https://url.com/image.jpg", // Optional
-  "avatar": "https://url.com/image.jpg", // Optional
+  "avatar": "https://url.com/image.jpg" // Optional
 }
 ```
 
@@ -158,6 +177,7 @@ The response body contains:
 ## Follow & Unfollow Profile
 
 #### PUT /api/v1/social/profiles/\<name>/follow
+
 #### PUT /api/v1/social/profiles/\<name>/unfollow
 
 This endpoint allows for the current logged in user to follow or unfollow another registered profile.
@@ -171,8 +191,8 @@ The response body contains:
 {
   "name": "string",
   "email": "user@example.com",
-  "banner": "string",
-  "avatar": "string",
+  "banner": "https://url.com/image.jpg",
+  "avatar": "https://url.com/image.jpg",
   "_count": {
     "posts": 0,
     "followers": 0,
@@ -180,4 +200,3 @@ The response body contains:
   }
 },
 ```
-  
