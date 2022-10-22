@@ -26,10 +26,10 @@ The basic post response object has the following properties:
 }
 ```
 
-Using the optional `_flag` query parameters available it is possible to access `posts`, `following` and `followers` within this response object. For example:
+Using the optional `_flag` query parameters available it is possible to access `following` and `followers` data within this response object. For example:
 
 ```json
-// GET /api/v1/social/profiles/name?_posts=true&_following=true&_followers=true
+// GET /api/v1/social/profiles/name?_following=true&_followers=true
 {
   "name": "string",
   "email": "user@example.com",
@@ -45,18 +45,6 @@ Using the optional `_flag` query parameters available it is possible to access `
     {
       "name": "string",
       "avatar": "https://url.com/image.jpg"
-    }
-  ],
-  "posts": [
-    {
-      "id": 0,
-      "owner": "string",
-      "created": "2022-09-05T06:32:10.593Z",
-      "updated": "2022-09-05T06:32:10.593Z",
-      "title": "string",
-      "body": "string",
-      "tags": ["string"],
-      "media": "https://url.com/image.jpg"
     }
   ],
   "_count": {
