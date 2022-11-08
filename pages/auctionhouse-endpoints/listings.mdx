@@ -1,0 +1,218 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Listings
+
+<Callout type="warning" emoji="⚠️">
+  These are authenticated endpoints. You can visit
+  [authentication](./authentication) to get an access token.
+</Callout>
+
+## Listings Model
+
+The basic listings response object has the following properties:
+
+```json
+// GET /api/v1/auction/listings/<id>
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "media": ["https://url.com/image.jpg"],
+  "created": "2020-01-01T00:00:00.000Z",
+  "updated": "2020-01-01T00:00:00.000Z",
+  "endsAt": "2020-01-01T00:00:00.000Z",
+  "_count": {
+    "bids": 0
+  }
+}
+```
+
+Using the optional `_flag` query parameters available it is possible to access `seller` and `bids` data within this response object. For example:
+
+```json
+// GET /api/v1/auction/listings/<id>?_seller=true&_bids=true
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "media": ["https://url.com/image.jpg"],
+  "created": "2020-01-01T00:00:00.000Z",
+  "updated": "2020-01-01T00:00:00.000Z",
+  "endsAt": "2020-01-01T00:00:00.000Z",
+  "seller": {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg"
+  },
+  "bids": [
+    {
+      "id": "string",
+      "amount": 0,
+      "bidderName": "string",
+      "created": "2020-01-01T00:00:00.000Z"
+    }
+  ],
+  "_count": {
+    "bids": 0
+  }
+}
+```
+
+## All entries
+
+#### GET /api/v1/auction/listings
+
+This endpoint returns all listings in an array.
+
+> If you want to get all listings by a specific profile, you can use the [listings by profile](./profiles#all-listings-by-profile) endpoint.
+
+```json
+// GET /api/v1/auction/listings
+[
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "media": ["https://url.com/image.jpg"],
+    "created": "2020-01-01T00:00:00.000Z",
+    "updated": "2020-01-01T00:00:00.000Z",
+    "endsAt": "2020-01-01T00:00:00.000Z",
+    "_count": {
+      "bids": 0
+    }
+  },
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "media": ["https://url.com/image.jpg"],
+    "created": "2020-01-01T00:00:00.000Z",
+    "updated": "2020-01-01T00:00:00.000Z",
+    "endsAt": "2020-01-01T00:00:00.000Z",
+    "_count": {
+      "bids": 0
+    }
+  }
+  // ...
+]
+```
+
+The list of listings can be sorted with the `sort` & `sortOrder` flags:
+
+```json
+// GET /api/v1/auction/listings?sort=created&sortOrder=desc
+// GET /api/v1/auction/listings?sort=title&sortOrder=asc
+```
+
+Listings can be sorted by any listing property, in ascending (`asc`) or descending (`desc`) order.
+
+## Single entry
+
+#### GET /api/v1/auction/listings/\<id>
+
+This endpoint returns a single listing.
+
+```json
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "media": ["https://url.com/image.jpg"],
+  "created": "2020-01-01T00:00:00.000Z",
+  "updated": "2020-01-01T00:00:00.000Z",
+  "endsAt": "2020-01-01T00:00:00.000Z",
+  "_count": {
+    "bids": 0
+  }
+}
+```
+
+> Use `_seller`, and/or `_bids` flags to get more data from this request.
+
+## Create entry
+
+#### POST /api/v1/auction/listings
+
+This endpoint allows for the creation of a new listing. The `title` and `endsAt` properties are required. The request body contains:
+
+```json
+// POST /api/v1/auction/listings
+{
+  "title": "string", // Required
+  "description": "string", // Optional
+  "media": ["https://url.com/image.jpg"], // Optional
+  "endsAt": "2020-01-01T00:00:00.000Z" // Required - Instance of new Date()
+}
+```
+
+> Please note that listings `media` must be an array of fully formed URLs that links to a live and publicly accessible images. The API will check the provided URLs and if any cannot be accessed publicly you will receive a 400 error response.
+
+The response body contains:
+
+```json
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "media": ["https://url.com/image.jpg"],
+  "created": "2020-01-01T00:00:00.000Z",
+  "updated": "2020-01-01T00:00:00.000Z",
+  "endsAt": "2020-01-01T00:00:00.000Z",
+  "_count": {
+    "bids": 0
+  }
+}
+```
+
+## Update entry
+
+#### PUT /api/v1/auction/listings/\<id>
+
+This endpoint allows for the updating of a listing. The request body contains:
+
+```json
+// PUT /api/v1/auction/listings/<id>
+{
+  "title": "string", // Optional
+  "description": "string", // Optional
+  "media": ["https://url.com/image.jpg"] // Optional
+}
+```
+
+## Delete entry
+
+#### DELETE /api/v1/auction/listings/\<id>
+
+This endpoint deletes an entry based on its id and returns nothing.
+
+## Bid on entry
+
+#### POST /api/v1/auction/listings/\<id>/bids
+
+This endpoint allows for the creation of a new bid on a listing. The `amount` property is required. The request body contains:
+
+> When the listing ends, the winning bid amount will be transferred to the seller's account. All losing bids will be refunded to the original bidder's account balance.
+
+```json
+// POST /api/v1/auction/listings/<id>/bids
+{
+  "amount": 0 // Required
+}
+```
+
+The response body contains:
+
+```json
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "media": ["https://url.com/image.jpg"],
+  "created": "2020-01-01T00:00:00.000Z",
+  "updated": "2020-01-01T00:00:00.000Z",
+  "endsAt": "2020-01-01T00:00:00.000Z",
+  "_count": {
+    "bids": 0
+  }
+}
+```
