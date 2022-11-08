@@ -1,0 +1,167 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Profiles
+
+<Callout type="warning" emoji="⚠️">
+  These are authenticated endpoints. You can visit
+  [authentication](./authentication) to get an access token.
+</Callout>
+
+## Profile Model
+
+The basic profiles response object has the following properties:
+
+```json
+// GET /api/v1/auction/profiles/<name>
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "credits": 0,
+  "_count": {
+    "listings": 0
+  }
+}
+```
+
+Using the optional `_flag` query parameters available it is possible to access `listings` data within this response object. For example:
+
+```json
+// GET /api/v1/auction/profiles/name?_listings=true
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "credits": 0,
+  "listings": [
+    {
+      "id": "string",
+      "title": "string",
+      "description": "string",
+      "media": ["https://url.com/image.jpg"],
+      "created": "2020-01-01T00:00:00.000Z",
+      "updated": "2020-01-01T00:00:00.000Z",
+      "endsAt": "2020-01-01T00:00:00.000Z"
+    }
+  ],
+  "_count": {
+    "listings": 0
+  }
+}
+```
+
+## All entries
+
+#### GET /api/v1/auction/profiles
+
+This endpoint returns a list of all registered profiles.
+
+```json
+[
+  {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg",
+    "credits": 0,
+    "_count": {
+      "listings": 0
+    }
+  },
+  {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg",
+    "credits": 0,
+    "_count": {
+      "listings": 0
+    }
+  }
+]
+```
+
+## Single entry
+
+#### GET /api/v1/auction/profiles/\<name>
+
+This endpoint returns a single registered profile.
+
+```json
+// GET /api/v1/auction/profiles/<name>
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "credits": 0,
+  "_count": {
+    "listings": 0
+  }
+}
+```
+
+## All listings by profile
+
+#### GET /api/v1/auction/profiles/\<name>/listings
+
+This endpoint returns all listings by profile.
+
+The response is the same as the [listings](./listings#all-entries) endpoint, and accepts the same optional query parameters and flags.
+
+```json
+// GET /api/v1/auction/profiles/<name>/listings
+[
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "media": ["https://url.com/image.jpg"],
+    "created": "2020-01-01T00:00:00.000Z",
+    "updated": "2020-01-01T00:00:00.000Z",
+    "endsAt": "2020-01-01T00:00:00.000Z",
+    "_count": {
+      "bids": 0
+    }
+  },
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "media": ["https://url.com/image.jpg"],
+    "created": "2020-01-01T00:00:00.000Z",
+    "updated": "2020-01-01T00:00:00.000Z",
+    "endsAt": "2020-01-01T00:00:00.000Z",
+    "_count": {
+      "bids": 0
+    }
+  }
+  // ...
+]
+```
+
+## Update entry media
+
+#### PUT /api/v1/auction/profiles/\<name>/media
+
+This endpoint allows for profile `avatar` images to be set or changed. The request body contains:
+
+```json
+{
+  "avatar": "https://url.com/image.jpg" // Required
+}
+```
+
+The response body contains:
+
+```json
+// PUT /api/v1/auction/profiles/<name>/media
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "credits": 0,
+  "_count": {
+    "listings": 0
+  }
+}
+```
+
+> Please note that profile `avatar` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
