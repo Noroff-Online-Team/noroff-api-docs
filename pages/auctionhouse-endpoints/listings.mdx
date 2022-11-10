@@ -145,7 +145,7 @@ This endpoint allows for the creation of a new listing. The `title` and `endsAt`
 }
 ```
 
-> Please note that listings `media` must be an array of fully formed URLs that links to a live and publicly accessible images. The API will check the provided URLs and if any cannot be accessed publicly you will receive a 400 error response.
+> Please note that listings `media` must be an array of fully formed URLs that links to live and publicly accessible images. The API will check the provided URLs and if any cannot be accessed publicly you will receive a 400 error response.
 
 The response body contains:
 
@@ -191,14 +191,14 @@ This endpoint deletes an entry based on its id and returns nothing.
 
 This endpoint allows for the creation of a new bid on a listing. The `amount` property is required. The request body contains:
 
-> When the listing ends, the winning bid amount will be transferred to the seller's account. All losing bids will be refunded to the original bidder's account balance.
-
 ```json
 // POST /api/v1/auction/listings/<id>/bids
 {
   "amount": 0 // Required
 }
 ```
+
+> When the listing ends, the winning bid amount will be transferred to the seller's account. All losing bids will be refunded to the original bidder's account balance.
 
 The response body contains:
 
