@@ -2,5 +2,6 @@
   "index": "Introduction",
   "about": "About",
   "basic-endpoints": "Basic Endpoints",
-  "social-endpoints": "Social Endpoints"
+  "social-endpoints": "Social Endpoints",
+  "auctionhouse-endpoints": "Auction House Endpoints"
 }

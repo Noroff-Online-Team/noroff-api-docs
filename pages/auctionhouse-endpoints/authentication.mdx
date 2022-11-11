@@ -3,24 +3,23 @@ import Callout from 'nextra-theme-docs/callout'
 # Authentication
 
 <Callout>
-  This authentication is only related to the `/social` endpoints.
+  This authentication is only related to the `/auction` endpoints.
 </Callout>
 
-These endpoints are used to authorize yourself with the API server. All `/social` routes require an authorization token to be included in the request.
+These endpoints are used to authorize yourself with the API server. All `/auction` routes require an authorization token to be included in the request.
 
 ## Register
 
-#### POST /api/v1/social/auth/register
+#### POST /api/v1/auction/auth/register
 
 This endpoint will register a new user profile. You will need to send all of the required values in your `POST` request:
 
 ```json
 {
-  "name": "my_username",                          // Required
-  "email": "first.last@stud.noroff.no",           // Required
-  "password": "UzI1NiIsInR5cCI",                  // Required
-  "avatar": "https://img.service.com/avatar.jpg", // Optional
-  "banner": "https://img.service.com/banner.jpg"  // Optional
+  "name": "my_username",                         // Required
+  "email": "first.last@stud.noroff.no",          // Required
+  "password": "UzI1NiIsInR5cCI",                 // Required
+  "avatar": "https://img.service.com/avatar.jpg" // Optional
 }
 ```
 
@@ -34,7 +33,7 @@ You can now use your registered account to log in.
 
 ## Login
 
-#### POST /api/v1/social/auth/login
+#### POST /api/v1/auction/auth/login
 
 You can use this endpoint to login with your registered user. You will need to send the following body along with the POST request.
 
@@ -51,12 +50,15 @@ In return you will receive a response with the following body:
 {
   "name": "my_username",
   "email": "first.last@stud.noroff.no",
+  "credits": 1000,
   "avatar": "https://img.service.com/avatar.jpg",
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 }
 ```
 
-You can now use this access token as the Bearer token in the `Authorization` header for all `/social` endpoints.
+You can now use this access token as the Bearer token in the `Authorization` header for all `/auction` endpoints.
+
+The response object will also include your credits to use for bidding. Each user is given 1,000 credits by default.
 
 #### Example of sending Authorization header.
 
@@ -67,6 +69,6 @@ const options = {
   },
 }
 
-const response = await fetch(`${API_BASE_URL}/api/v1/social/posts`, options)
+const response = await fetch(`${API_BASE_URL}/api/v1/auction/listings`, options)
 const data = await response.json()
 ```

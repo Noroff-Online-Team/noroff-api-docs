@@ -3,9 +3,7 @@ import Callout from 'nextra-theme-docs/callout'
 # Authentication
 
 <Callout>
-  This authentication is only related to the [`/quotes`](./quotes) endpoint. If
-  you're looking for authentication for the `/social` endpoints, please see the
-  [Social Auth](/social-endpoints/authentication) documentation.
+  This authentication is only related to the `/quotes` endpoints.
 </Callout>
 
 Some endpoints may require you to be authenticated. This is done by sending an `Authorization` header with your access token along with your request.
@@ -20,7 +18,7 @@ You can login by sending a `POST` request to the `/api/v1/auth/login` endpoint w
 
 ```json
 {
-  "username": "my_username"
+  "username": "my_username" // Required
 }
 ```
 
