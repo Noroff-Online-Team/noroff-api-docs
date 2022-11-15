@@ -17,6 +17,7 @@ The basic listings response object has the following properties:
   "id": "string",
   "title": "string",
   "description": "string",
+  "tags": ["string"],
   "media": ["https://url.com/image.jpg"],
   "created": "2020-01-01T00:00:00.000Z",
   "updated": "2020-01-01T00:00:00.000Z",
@@ -35,6 +36,7 @@ Using the optional `_flag` query parameters available it is possible to access `
   "id": "string",
   "title": "string",
   "description": "string",
+  "tags": ["string"],
   "media": ["https://url.com/image.jpg"],
   "created": "2020-01-01T00:00:00.000Z",
   "updated": "2020-01-01T00:00:00.000Z",
@@ -73,6 +75,7 @@ This endpoint returns all listings in an array.
     "id": "string",
     "title": "string",
     "description": "string",
+    "tags": ["string"],
     "media": ["https://url.com/image.jpg"],
     "created": "2020-01-01T00:00:00.000Z",
     "updated": "2020-01-01T00:00:00.000Z",
@@ -85,6 +88,7 @@ This endpoint returns all listings in an array.
     "id": "string",
     "title": "string",
     "description": "string",
+    "tags": ["string"],
     "media": ["https://url.com/image.jpg"],
     "created": "2020-01-01T00:00:00.000Z",
     "updated": "2020-01-01T00:00:00.000Z",
@@ -97,7 +101,15 @@ This endpoint returns all listings in an array.
 ]
 ```
 
-The list of listings can be sorted with the `sort` & `sortOrder` flags:
+You can filter the results based on an entry in the `tags` array by using the `_tag` query flag. You may only filter by one tag at a time.
+
+The following query will return all listings that includes `my_tag` in their `tags` array.
+
+```json
+// GET /api/v1/auction/listings?_tag=my_tag
+```
+
+The listings can be sorted with the `sort` & `sortOrder` flags:
 
 ```json
 // GET /api/v1/auction/listings?sort=created&sortOrder=desc
@@ -117,6 +129,7 @@ This endpoint returns a single listing.
   "id": "string",
   "title": "string",
   "description": "string",
+  "tags": ["string"],
   "media": ["https://url.com/image.jpg"],
   "created": "2020-01-01T00:00:00.000Z",
   "updated": "2020-01-01T00:00:00.000Z",
