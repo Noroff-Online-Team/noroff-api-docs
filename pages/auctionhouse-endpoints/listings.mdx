@@ -153,6 +153,7 @@ This endpoint allows for the creation of a new listing. The `title` and `endsAt`
 {
   "title": "string", // Required
   "description": "string", // Optional
+  "tags": ["string"], // optional
   "media": ["https://url.com/image.jpg"], // Optional
   "endsAt": "2020-01-01T00:00:00.000Z" // Required - Instance of new Date()
 }
@@ -167,6 +168,7 @@ The response body contains:
   "id": "string",
   "title": "string",
   "description": "string",
+  "tags": ["string"],
   "media": ["https://url.com/image.jpg"],
   "created": "2020-01-01T00:00:00.000Z",
   "updated": "2020-01-01T00:00:00.000Z",
@@ -188,6 +190,7 @@ This endpoint allows for the updating of a listing. The request body contains:
 {
   "title": "string", // Optional
   "description": "string", // Optional
+  "tags": ["string"], // Optional
   "media": ["https://url.com/image.jpg"] // Optional
 }
 ```
@@ -220,6 +223,7 @@ The response body contains:
   "id": "string",
   "title": "string",
   "description": "string",
+  "tags": ["string"],
   "media": ["https://url.com/image.jpg"],
   "created": "2020-01-01T00:00:00.000Z",
   "updated": "2020-01-01T00:00:00.000Z",
