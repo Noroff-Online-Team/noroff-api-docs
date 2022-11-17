@@ -141,6 +141,14 @@ This endpoint returns a single post.
 
 > Use `_author`, `_comments` and/or `_reactions` flags to get more data from this request.
 
+## All entries from followed profiles
+
+#### GET /api/v1/social/posts/following
+
+This endpoint returns all posts from profiles that the authenticated user is following.
+
+The data returned is similar to the [all entries](#all-entries) endpoint and accepts the same optional query flags.
+
 ## Create entry
 
 #### POST /api/v1/social/posts
