@@ -107,6 +107,14 @@ This endpoint returns all posts in an array.
 ]
 ```
 
+You can filter the results based on an entry in the `tags` array by using the `_tag` query flag. You may only filter by one tag at a time.
+
+The following query will return all posts that includes `my_tag` in their `tags` array.
+
+```json
+// GET /api/v1/social/posts?_tag=my_tag
+```
+
 The list of posts can be sorted with the `sort` & `sortOrder` flags:
 
 ```json
