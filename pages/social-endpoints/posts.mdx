@@ -60,7 +60,13 @@ Using the optional `_flag` query parameters available it is possible to access `
       "id": 0,
       "postId": 0,
       "owner": "string",
-      "created": "2022-09-04T08:17:59.383Z"
+      "created": "2022-09-04T08:17:59.383Z",
+      "author": {
+        "name": "string",
+        "email": "user@example.com",
+        "avatar": "https://url.com/image.jpg",
+        "banner": "https://url.com/image.jpg"
+      }
     }
   ]
 }
@@ -279,6 +285,12 @@ The response body contains:
   "id": 0,
   "postId": 0,
   "owner": "string",
-  "created": "2022-09-04T16:29:07.175Z"
+  "created": "2022-09-04T16:29:07.175Z",
+  "author": {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg",
+    "banner": "https://url.com/image.jpg"
+  }
 }
 ```
