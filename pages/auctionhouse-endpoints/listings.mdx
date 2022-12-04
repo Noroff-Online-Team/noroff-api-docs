@@ -109,6 +109,12 @@ The following query will return all listings that includes `my_tag` in their `ta
 // GET /api/v1/auction/listings?_tag=my_tag
 ```
 
+If you want to get all listings that are currently active, you can use the `_active` query flag.
+
+```json
+// GET /api/v1/auction/listings?_active=true
+```
+
 The listings can be sorted with the `sort` & `sortOrder` flags:
 
 ```json
