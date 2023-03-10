@@ -1,11 +1,11 @@
 import { useConfig } from 'nextra-theme-docs'
 
 export default {
-  docsRepositoryBase: 'https://github.com/NoroffFEU/noroff-api-docs',
+  docsRepositoryBase: 'https://github.com/NoroffFEU/noroff-api-docs/tree/main',
   project: {
     link: 'https://github.com/NoroffFEU/noroff-api-docs',
   },
-  primaryHue: 190,
+  primaryHue: 193,
   gitTimestamp: <></>,
   sidebar: {
     toggleButton: true,
