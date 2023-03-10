@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
   "about": "About",
+  "authentication": "Authentication",
   "basic-endpoints": "Basic Endpoints",
   "social-endpoints": "Social Endpoints",
   "auctionhouse-endpoints": "Auction House Endpoints"
