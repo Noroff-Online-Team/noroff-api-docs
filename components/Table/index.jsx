@@ -4,7 +4,7 @@ export function OptionTable({ options }) {
   return (
     <div
       className={
-        '-mx-6 mt-6 mb-4 overflow-x-auto overscroll-x-contain px-6 pb-4 ' +
+        '-mx-6 mt-4 mb-4 overflow-x-auto overscroll-x-contain px-6 pb-4 ' +
         styles.container
       }
     >
