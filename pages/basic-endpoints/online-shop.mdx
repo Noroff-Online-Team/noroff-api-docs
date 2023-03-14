@@ -1,10 +1,14 @@
+import { EndpointDetails } from '../../components/EndpointDetails'
+import { Hr } from '../../components/Hr'
+
 # Online Shop
 
 This page is related to /online-shop.
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/online-shop
+<EndpointDetails path="/online-shop" />
 
 ```json
 [
@@ -47,9 +51,10 @@ This page is related to /online-shop.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/online-shop/\<id>
+<EndpointDetails path="/online-shop/<id>" />
 
 ```json
 // GET /api/v1/online-shop/159fdd2f-2b12-46de-9654-d9139525ba87

@@ -1,10 +1,14 @@
+import { EndpointDetails } from '../../components/EndpointDetails'
+import { Hr } from '../../components/Hr'
+
 # Jokes
 
 This page is related to /jokes.
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/jokes
+<EndpointDetails path="/jokes" />
 
 ```json
 [
@@ -24,9 +28,10 @@ This page is related to /jokes.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/jokes/\<id>
+<EndpointDetails path="/jokes/<id>" />
 
 ```json
 // GET /api/v1/jokes/1
@@ -38,9 +43,10 @@ This page is related to /jokes.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/jokes/random
+<EndpointDetails path="/jokes/random" />
 
 ```json
 {

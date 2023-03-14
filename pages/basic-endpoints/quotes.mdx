@@ -1,4 +1,6 @@
 import { Callout } from 'nextra-theme-docs'
+import { EndpointDetails } from '../../components/EndpointDetails'
+import { Hr } from '../../components/Hr'
 
 # Quotes
 
@@ -9,9 +11,10 @@ import { Callout } from 'nextra-theme-docs'
 
 This page is related to /quotes.
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/quotes
+<EndpointDetails path="/quotes" />
 
 ```json
 [
@@ -37,9 +40,10 @@ This page is related to /quotes.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/quotes/\<id>
+<EndpointDetails path="/quotes/<id>" />
 
 ```json
 // GET /api/v1/quotes/1
@@ -54,9 +58,10 @@ This page is related to /quotes.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/quotes/random
+<EndpointDetails path="/quotes/random" />
 
 ```json
 {

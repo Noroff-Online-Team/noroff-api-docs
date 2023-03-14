@@ -1,10 +1,14 @@
+import { EndpointDetails } from '../../components/EndpointDetails'
+import { Hr } from '../../components/Hr'
+
 # NBA Teams
 
 This page is related to /nba-teams.
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/nba-teams
+<EndpointDetails path="/nba-teams" />
 
 ```json
 [
@@ -28,9 +32,10 @@ This page is related to /nba-teams.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/nba-teams/\<id>
+<EndpointDetails path="/nba-teams/<id>" />
 
 ```json
 // GET /api/v1/nba-teams/1
@@ -44,9 +49,10 @@ This page is related to /nba-teams.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/nba-teams/random
+<EndpointDetails path="/nba-teams/random" />
 
 ```json
 {

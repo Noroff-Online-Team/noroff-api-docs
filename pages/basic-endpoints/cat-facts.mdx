@@ -1,10 +1,14 @@
+import { EndpointDetails } from '../../components/EndpointDetails'
+import { Hr } from '../../components/Hr'
+
 # Cat Facts
 
 This page is related to /cat-facts.
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/cat-facts
+<EndpointDetails path="/cat-facts" />
 
 ```json
 [
@@ -20,9 +24,10 @@ This page is related to /cat-facts.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/cat-facts/\<id>
+<EndpointDetails path="/cat-facts/<id>" />
 
 ```json
 // GET /api/v1/cat-facts/1
@@ -32,9 +37,10 @@ This page is related to /cat-facts.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/cat-facts/random
+<EndpointDetails path="/cat-facts/random" />
 
 ```json
 {

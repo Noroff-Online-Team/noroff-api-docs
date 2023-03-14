@@ -1,10 +1,14 @@
+import { EndpointDetails } from '../../components/EndpointDetails'
+import { Hr } from '../../components/Hr'
+
 # Old Games
 
 This page is related to /old-games.
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/old-games
+<EndpointDetails path="/old-games" />
 
 ```json
 [
@@ -30,9 +34,10 @@ This page is related to /old-games.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/old-games/\<id>
+<EndpointDetails path="/old-games/<id>" />
 
 ```json
 // GET /api/v1/old-games/1
@@ -47,9 +52,10 @@ This page is related to /old-games.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/old-games/random
+<EndpointDetails path="/old-games/random" />
 
 ```json
 {
