@@ -1,5 +1,11 @@
 import styles from './style.module.css'
 
+/**
+ * Table for showing request and response body parameters
+ * @param {Object} props - Props
+ * @param {{ property: string, type: string, description: string, required: boolean }[]} props.options - Array of options
+ * @returns {JSX.Element} - Table of either request or response body parameters
+ */
 export function OptionTable({ options }) {
   return (
     <div
@@ -14,7 +20,6 @@ export function OptionTable({ options }) {
             <th className="py-2 font-semibold">Property</th>
             <th className="py-2 pl-6 font-semibold">Type</th>
             <th className="py-2 px-6 font-semibold">Description</th>
-            <th className="py-2 px-6 font-semibold">Required</th>
           </tr>
         </thead>
         <tbody className="align-baseline text-gray-900 dark:text-gray-100">
@@ -30,7 +35,6 @@ export function OptionTable({ options }) {
                 {type}
               </td>
               <td className="py-2 pl-6">{description}</td>
-              <td className="py-2 pl-6">{required}</td>
             </tr>
           ))}
         </tbody>
