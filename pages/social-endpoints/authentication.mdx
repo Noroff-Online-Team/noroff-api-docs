@@ -14,7 +14,9 @@ These endpoints are used to authorize yourself with the API server. All `/social
 
 <EndpointDetails method="POST" path="/social/auth/register" />
 
-This endpoint will register a new user profile. You will need to send all of the required values in your `POST` request:
+This endpoint will register a new user profile.
+
+You will need to send all of the required values in your `POST` request:
 
 ```json filename="Request"
 {
@@ -39,7 +41,7 @@ You can now use your registered account to log in.
 
 <EndpointDetails method="POST" path="/social/auth/login" />
 
-You use this endpoint to login with your registered user. You will need to send the following body along with the `POST` request.
+You can use this endpoint to login with your registered user.
 
 ```json filename="Request"
 {
@@ -47,8 +49,6 @@ You use this endpoint to login with your registered user. You will need to send 
   "password": "UzI1NiIsInR5cCI"
 }
 ```
-
-In return you will receive a response with the following body:
 
 ```json filename="Response"
 {
