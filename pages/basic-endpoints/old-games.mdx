@@ -1,16 +1,29 @@
-import { EndpointDetails } from '../../components/EndpointDetails'
-import { Hr } from '../../components/Hr'
+import { EndpointDetails, Hr, Properties } from '../../components'
 
 # Old Games
 
-This page is related to /old-games.
+This endpoint allows you to retrieve all old games, a single old game by its id, or a random old game. The response will be an array of JSON objects if you request all games, or a single JSON object if you request a single game or a random game.
+
+<Properties
+  options={[
+    ['id', 'integer', 'The id of the team.'],
+    ['slug', 'string', 'The slug of the team.'],
+    ['name', 'string', 'The name of the team.'],
+    ['description', 'string', 'The description of the team.'],
+    ['released', 'string', 'The year the game was released.'],
+    ['image', 'string', 'The image of the game.'],
+    ['genre', 'array', 'A string array of the genres of the game.'],
+  ]}
+/>
 
 <Hr />
 ### All entries
 
 <EndpointDetails path="/old-games" />
 
-```json
+This endpoint allows you to retrieve all old games.
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -39,8 +52,9 @@ This page is related to /old-games.
 
 <EndpointDetails path="/old-games/<id>" />
 
-```json
-// GET /api/v1/old-games/1
+This endpoint allows you to retrieve a single old game by its id.
+
+```json filename="Response"
 {
   "id": 1,
   "slug": "the-incredible-machine",
@@ -57,7 +71,9 @@ This page is related to /old-games.
 
 <EndpointDetails path="/old-games/random" />
 
-```json
+This endpoint allows you to retrieve a random old game.
+
+```json filename="Response"
 {
   "id": 8,
   "slug": "street-rod-2-the-next-generation",

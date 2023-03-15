@@ -1,16 +1,26 @@
-import { EndpointDetails } from '../../components/EndpointDetails'
-import { Hr } from '../../components/Hr'
+import { EndpointDetails, Hr, Properties } from '../../components'
 
 # Jokes
 
-This page is related to /jokes.
+This endpoint allows you to retrieve all jokes, a single joke by its id, or a random joke. The response will be an array of JSON objects if you request all jokes, or a single JSON object if you request a single joke or a random joke.
+
+<Properties
+  options={[
+    ['id', 'integer', 'The id of the joke.'],
+    ['type', 'string', 'The type of the joke.'],
+    ['setup', 'string', 'The setup of the joke.'],
+    ['punchline', 'string', 'The punchline of the joke.'],
+  ]}
+/>
 
 <Hr />
 ### All entries
 
 <EndpointDetails path="/jokes" />
 
-```json
+This endpoint allows you to retrieve all jokes.
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -33,8 +43,9 @@ This page is related to /jokes.
 
 <EndpointDetails path="/jokes/<id>" />
 
-```json
-// GET /api/v1/jokes/1
+This endpoint allows you to retrieve a single joke by its id.
+
+```json filename="Response"
 {
   "id": 1,
   "type": "general",
@@ -48,7 +59,9 @@ This page is related to /jokes.
 
 <EndpointDetails path="/jokes/random" />
 
-```json
+This endpoint allows you to retrieve a random joke.
+
+```json filename="Response"
 {
   "id": 120,
   "type": "general",
