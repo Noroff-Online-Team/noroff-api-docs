@@ -1,14 +1,14 @@
-import { EndpointDetails, Hr, Properties, Description } from '../../components'
+import { EndpointDetails, Hr, Properties } from '../../components'
 
 # Books
 
-<Description text="The books endpoint returns information about books." />
+This endpoint allows you to retrieve all books, a single book by its id, or a random book. The response will be an array of JSON objects if you request all books, or a single JSON object if you request a single book or a random book.
 
-<Hr />
 ### The Book model
 
+The books model contains all the information about a book
+
 <Properties
-  description="The books model contains all the information about a book"
   options={[
     ['id', 'integer', 'Unique identifier for the book.'],
     ['title', 'string', 'Title of the book.'],
@@ -28,7 +28,7 @@ import { EndpointDetails, Hr, Properties, Description } from '../../components'
 
 <EndpointDetails path="/books" />
 
-<Description text="This endpoint allows you to retrieve all books" />
+This endpoint allows you to retrieve all books
 
 ```json filename="Response"
 [
@@ -63,6 +63,8 @@ import { EndpointDetails, Hr, Properties, Description } from '../../components'
 
 <EndpointDetails path="/books/<id>" />
 
+This endpoint allows you to retrieve a single book by its id
+
 ```json filename="Response - GET /books/1"
 {
   "id": 1,
@@ -81,6 +83,8 @@ import { EndpointDetails, Hr, Properties, Description } from '../../components'
 ### Random entry
 
 <EndpointDetails path="/books/random" />
+
+This endpoint allows you to retrieve a random book
 
 ```json filename="Response"
 {
