@@ -4,6 +4,8 @@ import { EndpointDetails, Hr, Properties } from '../../components'
 
 This endpoint allows you to retrieve all products, or a single product by its id. The response will be an array of JSON objects if you request all products, or a single JSON object if you request a single product.
 
+### The Online Shop model
+
 <Properties
   options={[
     ['id', 'integer', 'The id of the product.'],
@@ -17,7 +19,7 @@ This endpoint allows you to retrieve all products, or a single product by its id
     [
       'reviews',
       'array',
-      'A JSON array of product reviews. Each review has an "id", "username", "rating", and "description".',
+      'An array of product reviews. Each review has an "id", "username", "rating", and "description".',
     ],
   ]}
 />
