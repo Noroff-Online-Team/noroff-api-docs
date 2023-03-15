@@ -26,9 +26,9 @@ export function EndpointDetails({ method = 'GET', path }) {
   }
 
   return (
-    <div className="flex items-center gap-x-2 mt-4 font-semibold font-mono">
+    <div className="flex items-center gap-x-2 mt-4 font-semibold font-mono ">
       <span
-        className={`leading-7 rounded-lg text-[0.75rem] px-2 ring-1 ring-inset ${methodColor}`}
+        className={`leading-6 rounded-lg text-[0.75rem] px-2 py-0.5 ring-1 ring-inset ${methodColor}`}
       >
         {method}
       </span>

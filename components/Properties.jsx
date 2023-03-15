@@ -1,3 +1,5 @@
+import { Description } from './Description'
+
 /**
  * List of properties for a model.
  * @param {Object} props - Props
@@ -8,9 +10,7 @@
 export function Properties({ description, options }) {
   return (
     <>
-      <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-7 mt-2">
-        {description}
-      </p>
+      <Description text={description} />
       <h3 className="font-semibold mb-2 mt-10 text-base dark:text-white">
         Properties
       </h3>
