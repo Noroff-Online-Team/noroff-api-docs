@@ -1,7 +1,7 @@
 /**
  * Description component
  * @param {Object} props - Props
- * @param {string} props.text - Description of the model
+ * @param {React.ReactNode} props.children - Text
  * @returns {JSX.Element} - Description component
  */
 export function Description({ children }) {
