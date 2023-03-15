@@ -1,5 +1,5 @@
 import { Callout } from 'nextra-theme-docs'
-import { OptionTable } from '../components/Table'
+import { Properties, Hr } from '../components'
 
 # Pagination & Sorting
 
@@ -7,21 +7,21 @@ import { OptionTable } from '../components/Table'
   Not every endpoint supports pagination and sorting.
 </Callout>
 
+<Hr />
 ### Pagination
 
 Pagination can be used to limit the number of results returned by an API request. This is useful for reducing the amount of data that needs to be transferred over the network, and for reducing the amount of data that needs to be processed by the client.
 
 You can use the `limit` and `offset` query parameters to paginate through the results of an API request. The `limit` parameter specifies the number of results to return, and the `offset` parameter specifies the number of results to skip. For example, if you wanted to get the first 10 results, you would set `limit` to `10` and `offset` to `0`. If you wanted to get the next 10 results, you would set `limit` to `10` and `offset` to `10`.
 
-#### Query Parameters
-
-<OptionTable
+<Properties
   options={[
-    ['limit', 'number', 'The number of results to return'],
-    ['offset', 'number', 'The number of results to skip'],
+    ['limit', 'number', 'The number of results to return.'],
+    ['offset', 'number', 'The number of results to skip.'],
   ]}
 />
 
+<Hr />
 ### Sorting
 
 You can use the `sort` and `sortOrder` query parameters to sort the results of an API request. The `sort` parameter specifies the field to sort by, and the `sortOrder` parameter specifies the sort order (ascending or descending). For example, if you wanted to sort the results by the `name` field in ascending order, you would set `sort` to `name` and `sortOrder` to `asc`.
@@ -30,11 +30,9 @@ You can use the `sort` and `sortOrder` query parameters to sort the results of a
 
 > The `sortOrder` parameter supports `asc` (ascending) or `desc` (descending). This field is optional, and defaults to `desc` if not otherwise specified.
 
-#### Query Parameters
-
-<OptionTable
+<Properties
   options={[
-    ['sort', 'string', 'The field to sort by'],
-    ['sortOrder', 'string', 'The sort order (asc or desc)'],
+    ['sort', 'string', 'The field to sort by.'],
+    ['sortOrder', 'string', 'The sort order (asc or desc).'],
   ]}
 />
