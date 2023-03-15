@@ -104,22 +104,27 @@ Not all of the properties of a post are returned by default. You can use the fol
 ```
 
 <Hr />
-### Filtering by tag
+### Filtering
 
-You can filter the results based on an entry in the `tags` array by using the `_tag` query flag. You may only filter by one tag at a time.
+You can filter for active listings by using the `_active` query flag.
 
-You can only filter by a single tag at a time.
+You can filter based on an entry in the tags array by using the `_tag` query flag. You may only filter by one tag at a time.
 
 <Properties
   title="Parameters"
   options={[
     ['_tag', 'string', 'If set, the results will be filtered by this tag.'],
+    [
+      '_active',
+      'boolean',
+      'If set to `true`, only active posts will be returned.',
+    ],
   ]}
 />
 
-An example query filtering by the `my_tag` tag.
+An example query filtering for active listings with the `my_tag` tag.
 
-<EndpointDetails path="/social/posts?_tag=my_tag" />
+<EndpointDetails path="/social/posts?_tag=my_tag&_active=true" />
 
 <Hr />
 ### All entries
@@ -169,6 +174,8 @@ This endpoint returns all posts in an array.
 
 This endpoint returns a single post.
 
+> Use the `_author`, `_comments` and/or `_reactions` flags to get more data from this request.
+
 ```json filename="Response"
 {
   "id": 0,
@@ -184,8 +191,6 @@ This endpoint returns a single post.
   }
 }
 ```
-
-> Use `_author`, `_comments` and/or `_reactions` flags to get more data from this request.
 
 <Hr />
 ### All entries from followed profiles
