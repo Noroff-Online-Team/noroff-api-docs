@@ -3,21 +3,19 @@ import { Description } from './Description'
 /**
  * List of properties for a model.
  * @param {Object} props - Props
- * @param {string} props.description - Description of the model
  * @param {{ name: string, type: string, description: string }[]} props.options - Array of options
  * @returns {JSX.Element} - List of properties for a model.
  */
-export function Properties({ description, options }) {
+export function Properties({ options }) {
   return (
     <>
-      <Description text={description} />
       <h3 className="font-semibold mb-2 mt-10 text-base dark:text-white">
         Properties
       </h3>
       <div className="my-6">
         <ul
           role="list"
-          className="m-0 list-none divide-y divide-gray-200 p-0 dark:divide-neutral-700/50"
+          className="m-0 list-none divide-y divide-gray-200 p-0 dark:divide-neutral-700/50 max-w-[30rem]"
         >
           {options.map(([name, type, description]) => (
             <li className="m-0 px-0 py-4 first:pt-0 last:pb-0" key={name}>
