@@ -1,6 +1,5 @@
 import { Callout } from 'nextra-theme-docs'
-import { EndpointDetails } from '../../components/EndpointDetails'
-import { Hr } from '../../components/Hr'
+import { EndpointDetails, Hr } from '../../components'
 
 # Authentication
 
@@ -20,7 +19,7 @@ an account, you can simply login with any username.
 
 You can login by sending a `POST` request to the `/auth/login` endpoint with your username in the request body.
 
-```json
+```json filename="Request"
 {
   "username": "my_username" // Required
 }
@@ -28,7 +27,7 @@ You can login by sending a `POST` request to the `/auth/login` endpoint with you
 
 In return you will receive a response with the following body:
 
-```json
+```json filename="Response"
 {
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 }
@@ -39,7 +38,7 @@ You can now use this access token as the Bearer token in the `Authorization` hea
 <Hr />
 ### Example of sending Authorization header.
 
-```js
+```js filename="Example"
 const options = {
   headers: {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....',
