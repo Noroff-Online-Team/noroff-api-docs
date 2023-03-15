@@ -1,4 +1,5 @@
 import { Callout } from 'nextra-theme-docs'
+import { EndpointDetails, Hr, Properties } from '../../components'
 
 # Listings
 
@@ -7,31 +8,52 @@ import { Callout } from 'nextra-theme-docs'
   [authentication](./authentication) to get an access token.
 </Callout>
 
-## Listings Model
+This endpoint allows you to create, read, update, delete listings. Listings are the main content of an auction house. They are created by profiles and can be bid on by other profiles.
 
-The basic listings response object has the following properties:
+This is a paginated and sortable endpoint. You can use the `limit` and `offset` query parameters to paginate the results. You can also use the `sort` and `sortOrder` query parameters to sort the results. Read more about the pagination and sorting features [here](../pagination-sorting).
 
-```json
-// GET /api/v1/auction/listings/<id>
-{
-  "id": "string",
-  "title": "string",
-  "description": "string",
-  "tags": ["string"],
-  "media": ["https://url.com/image.jpg"],
-  "created": "2020-01-01T00:00:00.000Z",
-  "updated": "2020-01-01T00:00:00.000Z",
-  "endsAt": "2020-01-01T00:00:00.000Z",
-  "_count": {
-    "bids": 0
-  }
-}
-```
+### The Listing model
 
-Using the optional `_flag` query parameters available it is possible to access `seller` and `bids` data within this response object. For example:
+<Properties
+  options={[
+    ['id', 'string', 'The unique identifier for the listing.'],
+    ['title', 'string', 'The title of the listing.'],
+    ['description', 'string', 'The description of the listing.'],
+    ['tags', 'array', 'A string array of tags for the listing.'],
+    ['media', 'array', 'A string array of media URLs for the listing.'],
+    ['created', 'string', 'The date the listing was created.'],
+    ['updated', 'string', 'The date the listing was last updated.'],
+    ['endsAt', 'string', 'The date the listing will end.'],
+    [
+      '_count',
+      'object',
+      'A JSON object containing the number of bids for the listing.',
+    ],
+  ]}
+/>
 
-```json
-// GET /api/v1/auction/listings/<id>?_seller=true&_bids=true
+<Hr />
+### Query parameters
+
+Not all of the properties of a post are returned by default. You can use the following optional query parameters to include additional properties in the response.
+
+<Properties
+  title="Parameters"
+  options={[
+    [
+      '_seller',
+      'boolean',
+      'A JSON object containing the seller name, email and avatar.',
+    ],
+    [
+      '_bids',
+      'boolean',
+      'An array of objects containing bids for the listing. Each bid consists of an id, amount, bidderName and created date.',
+    ],
+  ]}
+/>
+
+```json filename="Example with all optional query parameters"
 {
   "id": "string",
   "title": "string",
@@ -60,16 +82,39 @@ Using the optional `_flag` query parameters available it is possible to access `
 }
 ```
 
-## All entries
+<Hr />
+### Filtering
 
-#### GET /api/v1/auction/listings
+You can filter for active listings by using the `_active` query flag.
+
+You can filter based on an entry in the tags array by using the `_tag` query flag. You may only filter by one tag at a time.
+
+<Properties
+  title="Parameters"
+  options={[
+    ['_tag', 'string', 'If set, the results will be filtered by this tag.'],
+    [
+      '_active',
+      'boolean',
+      'If set to `true`, only active posts will be returned.',
+    ],
+  ]}
+/>
+
+An example query filtering for active listings with the `my_tag` tag.
+
+<EndpointDetails path="/auction/listings?_tag=my_tag&_active=true" />
+
+<Hr />
+### All entries
+
+<EndpointDetails path="/auction/listings" />
 
 This endpoint returns all listings in an array.
 
 > If you want to get all listings by a specific profile, you can use the [listings by profile](./profiles#all-listings-by-profile) endpoint.
 
-```json
-// GET /api/v1/auction/listings
+```json filename="Response"
 [
   {
     "id": "string",
@@ -101,36 +146,16 @@ This endpoint returns all listings in an array.
 ]
 ```
 
-You can filter the results based on an entry in the `tags` array by using the `_tag` query flag. You may only filter by one tag at a time.
+<Hr />
+### Single entry
 
-The following query will return all listings that includes `my_tag` in their `tags` array.
-
-```json
-// GET /api/v1/auction/listings?_tag=my_tag
-```
-
-If you want to get all listings that are currently active, you can use the `_active` query flag.
-
-```json
-// GET /api/v1/auction/listings?_active=true
-```
-
-The listings can be sorted with the `sort` & `sortOrder` flags:
-
-```json
-// GET /api/v1/auction/listings?sort=created&sortOrder=desc
-// GET /api/v1/auction/listings?sort=title&sortOrder=asc
-```
-
-Listings can be sorted by any listing property, in ascending (`asc`) or descending (`desc`) order.
-
-## Single entry
-
-#### GET /api/v1/auction/listings/\<id>
+<EndpointDetails path="/auction/listings/<id>" />
 
 This endpoint returns a single listing.
 
-```json
+> Use the `_seller`, and/or `_bids` flags to get more data from this request.
+
+```json filename="Response"
 {
   "id": "string",
   "title": "string",
@@ -146,30 +171,26 @@ This endpoint returns a single listing.
 }
 ```
 
-> Use `_seller`, and/or `_bids` flags to get more data from this request.
+<Hr />
+### Create entry
 
-## Create entry
+<EndpointDetails method="POST" path="/auction/listings" />
 
-#### POST /api/v1/auction/listings
+This endpoint allows for the creation of a new listing. The `title` and `endsAt` properties are required, but we recommend including the `description` and `media` properties as well.
 
-This endpoint allows for the creation of a new listing. The `title` and `endsAt` properties are required. The request body contains:
+> Please note that listings `media` property must be an array of fully formed URLs that links to live and publicly accessible images. The API will check the provided URLs and if any cannot be accessed publicly you will receive a 400 error response.
 
-```json
-// POST /api/v1/auction/listings
+```json filename="Request"
 {
   "title": "string", // Required
   "description": "string", // Optional
-  "tags": ["string"], // optional
+  "tags": ["string"], // Optional
   "media": ["https://url.com/image.jpg"], // Optional
   "endsAt": "2020-01-01T00:00:00.000Z" // Required - Instance of new Date()
 }
 ```
 
-> Please note that listings `media` must be an array of fully formed URLs that links to live and publicly accessible images. The API will check the provided URLs and if any cannot be accessed publicly you will receive a 400 error response.
-
-The response body contains:
-
-```json
+```json filename="Response"
 {
   "id": "string",
   "title": "string",
@@ -185,14 +206,16 @@ The response body contains:
 }
 ```
 
-## Update entry
+<Hr />
+### Update entry
 
-#### PUT /api/v1/auction/listings/\<id>
+<EndpointDetails method="PUT" path="/auction/listings/<id>" />
 
-This endpoint allows for the updating of a listing. The request body contains:
+This endpoint allows for the updating of a listing.
 
-```json
-// PUT /api/v1/auction/listings/<id>
+> Please note that listings `media` property must be an array of fully formed URLs that links to live and publicly accessible images. The API will check the provided URLs and if any cannot be accessed publicly you will receive a 400 error response.
+
+```json filename="Request"
 {
   "title": "string", // Optional
   "description": "string", // Optional
@@ -201,30 +224,29 @@ This endpoint allows for the updating of a listing. The request body contains:
 }
 ```
 
-## Delete entry
+<Hr />
+### Delete entry
 
-#### DELETE /api/v1/auction/listings/\<id>
+<EndpointDetails method="DELETE" path="/auction/listings/<id>" />
 
 This endpoint deletes an entry based on its id and returns nothing.
 
-## Bid on entry
+<Hr />
+### Bid on entry
 
-#### POST /api/v1/auction/listings/\<id>/bids
+<EndpointDetails method="POST" path="/auction/listings/<id>/bids" />
 
-This endpoint allows for the creation of a new bid on a listing. The `amount` property is required. The request body contains:
+This endpoint allows for the creation of a new bid on a listing.
 
-```json
-// POST /api/v1/auction/listings/<id>/bids
+> When a listing ends, the winning bid amount will be transferred to the seller's credits. All losing bids will be refunded to its original bidder's credits.
+
+```json filename="Request"
 {
   "amount": 0 // Required
 }
 ```
 
-> When the listing ends, the winning bid amount will be transferred to the seller's account. All losing bids will be refunded to the original bidder's account balance.
-
-The response body contains:
-
-```json
+```json filename="Response"
 {
   "id": "string",
   "title": "string",
