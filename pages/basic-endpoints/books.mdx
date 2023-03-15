@@ -1,16 +1,36 @@
-import { EndpointDetails } from '../../components/EndpointDetails'
-import { Hr } from '../../components/Hr'
+import { EndpointDetails, Hr, Properties, Description } from '../../components'
 
 # Books
 
-This page is related to /books.
+<Description text="The books endpoint returns information about books." />
 
 <Hr />
+### The Book model
+
+<Properties
+  description="The books model contains all the information about a book"
+  options={[
+    ['id', 'integer', 'Unique identifier for the book.'],
+    ['title', 'string', 'Title of the book.'],
+    ['author', 'string', 'Author of the book.'],
+    ['genre', 'string', 'Genre of the book.'],
+    ['description', 'string', 'Description of the book.'],
+    ['isbn', 'string', 'ISBN of the book.'],
+    ['image', 'string', 'Image of the book.'],
+    ['published', 'string', 'Date of publication of the book.'],
+    ['publisher', 'string', 'Publisher of the book.'],
+  ]}
+/>
+
+<Hr />
+
 ### All entries
 
 <EndpointDetails path="/books" />
 
-```json
+<Description text="This endpoint allows you to retrieve all books" />
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -43,8 +63,7 @@ This page is related to /books.
 
 <EndpointDetails path="/books/<id>" />
 
-```json
-// GET /api/v1/books/1
+```json filename="Response - GET /books/1"
 {
   "id": 1,
   "title": "Big Trouble in Town",
@@ -63,7 +82,7 @@ This page is related to /books.
 
 <EndpointDetails path="/books/random" />
 
-```json
+```json filename="Response"
 {
   "id": 53,
   "title": "Minecraft: How To Survive",
