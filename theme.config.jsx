@@ -1,4 +1,5 @@
 import { useConfig } from 'nextra-theme-docs'
+import { Description } from './components'
 
 export default {
   docsRepositoryBase: 'https://github.com/NoroffFEU/noroff-api-docs/tree/main',
@@ -13,6 +14,9 @@ export default {
   navigation: {
     prev: true,
     next: true,
+  },
+  components: {
+    p: (props) => <Description {...props} />,
   },
   logo: (
     <>
