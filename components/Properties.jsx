@@ -3,16 +3,17 @@ import { Description } from './Description'
 /**
  * List of properties for a model.
  * @param {Object} props - Props
+ * @param {string} [props.title="Properties"] - Title of the list
  * @param {{ name: string, type: string, description: string }[]} props.options - Array of options
  * @returns {JSX.Element} - List of properties for a model.
  */
-export function Properties({ options }) {
+export function Properties({ title = 'Properties', options }) {
   return (
     <>
-      <h3 className="font-semibold mb-2 mt-10 text-base dark:text-white">
-        Properties
+      <h3 className="font-semibold mb-6 mt-8 text-base dark:text-white">
+        {title}
       </h3>
-      <div className="my-6">
+      <div className="mb-10">
         <ul
           role="list"
           className="m-0 list-none divide-y divide-gray-200 p-0 dark:divide-neutral-700/50 max-w-[30rem]"
