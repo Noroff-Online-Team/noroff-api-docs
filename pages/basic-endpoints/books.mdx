@@ -1,12 +1,34 @@
+import { EndpointDetails, Hr, Properties } from '../../components'
+
 # Books
 
-This page is related to /books.
+This endpoint allows you to retrieve all books, a single book by its id, or a random book. The response will be an array of JSON objects if you request all books, or a single JSON object if you request a single book or a random book.
 
-## All entries
+### The Book model
 
-#### GET /api/v1/books
+<Properties
+  options={[
+    ['id', 'integer', 'Unique identifier for the book.'],
+    ['title', 'string', 'Title of the book.'],
+    ['author', 'string', 'Author of the book.'],
+    ['genre', 'string', 'Genre of the book.'],
+    ['description', 'string', 'Description of the book.'],
+    ['isbn', 'string', 'ISBN of the book.'],
+    ['image', 'string', 'Image of the book.'],
+    ['published', 'string', 'Date of publication of the book.'],
+    ['publisher', 'string', 'Publisher of the book.'],
+  ]}
+/>
 
-```json
+<Hr />
+
+### All entries
+
+<EndpointDetails path="/books" />
+
+This endpoint allows you to retrieve all books.
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -34,12 +56,14 @@ This page is related to /books.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/books/\<id>
+<EndpointDetails path="/books/<id>" />
 
-```json
-// GET /api/v1/books/1
+This endpoint allows you to retrieve a single book by its id.
+
+```json filename="Response"
 {
   "id": 1,
   "title": "Big Trouble in Town",
@@ -53,11 +77,14 @@ This page is related to /books.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/books/random
+<EndpointDetails path="/books/random" />
 
-```json
+This endpoint allows you to retrieve a random book.
+
+```json filename="Response"
 {
   "id": 53,
   "title": "Minecraft: How To Survive",

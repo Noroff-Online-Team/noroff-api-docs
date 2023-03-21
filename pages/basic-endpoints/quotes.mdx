@@ -1,19 +1,36 @@
-import Callout from 'nextra-theme-docs/callout'
+import { EndpointDetails, Hr, Properties, Callout } from '../../components'
 
 # Quotes
-
-This page is related to /quotes.
 
 <Callout type="warning" emoji="⚠️">
   These are authenticated endpoints. You can visit
   [authentication](./authentication) to get an access token.
 </Callout>
 
-## All entries
+This endpoint allows you to retrieve all quotes, a single quote by its id, or a random quote. The response will be an array of JSON objects if you request all quotes, or a single JSON object if you request a single quote or a random quote.
 
-#### GET /api/v1/quotes
+### The Quote model
 
-```json
+<Properties
+  options={[
+    ['id', 'integer', 'The id of the quote.'],
+    ['content', 'string', 'The content of the quote.'],
+    ['author', 'string', 'The author of the quote.'],
+    ['tags', 'array', 'A string array of the tags of the quote.'],
+    ['authorId', 'string', 'The id of the author.'],
+    ['authorSlug', 'string', 'The slug of the author.'],
+    ['length', 'integer', 'The length of the quote.'],
+  ]}
+/>
+
+<Hr />
+### All entries
+
+<EndpointDetails path="/quotes" />
+
+This endpoint allows you to retrieve all quotes.
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -37,12 +54,14 @@ This page is related to /quotes.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/quotes/\<id>
+<EndpointDetails path="/quotes/<id>" />
 
-```json
-// GET /api/v1/quotes/1
+This endpoint allows you to retrieve a single quote by its id.
+
+```json filename="Response"
 {
   "id": 1,
   "content": "The Superior Man is aware of Righteousness, the inferior man is aware of advantage.",
@@ -54,11 +73,14 @@ This page is related to /quotes.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/quotes/random
+<EndpointDetails path="/quotes/random" />
 
-```json
+This endpoint allows you to retrieve a random quote.
+
+```json filename="Response"
 {
   "id": 88,
   "content": "Keep yourself to the sunshine and you cannot see the shadow.",

@@ -1,4 +1,4 @@
-import Callout from 'nextra-theme-docs/callout'
+import { EndpointDetails, Hr, Properties, Callout } from '../../components'
 
 # Profiles
 
@@ -7,28 +7,48 @@ import Callout from 'nextra-theme-docs/callout'
   [authentication](./authentication) to get an access token.
 </Callout>
 
-## Profile Model
+This endpoint allows you to manage profiles. They are the users of the auction house and are the owners of listings.
 
-The basic profiles response object has the following properties:
+This is a paginated and sortable endpoint. You can use the `limit` and `offset` query parameters to paginate the results. You can also use the `sort` and `sortOrder` query parameters to sort the results. Read more about the pagination and sorting features [here](../pagination-sorting).
 
-```json
-// GET /api/v1/auction/profiles/<name>
-{
-  "name": "string",
-  "email": "user@example.com",
-  "avatar": "https://url.com/image.jpg",
-  "credits": 0,
-  "wins": ["string"],
-  "_count": {
-    "listings": 0
-  }
-}
-```
+### The Profile model
 
-Using the optional `_flag` query parameters available it is possible to access `listings` data within this response object. For example:
+<Properties
+  options={[
+    ['name', 'string', 'The unique name of the profile.'],
+    ['email', 'string', 'The email address of the profile.'],
+    ['avatar', 'string', 'The URL of the profile avatar image.'],
+    ['credits', 'integer', 'The number of credits the profile has.'],
+    [
+      'wins',
+      'array',
+      'A string array of ids of the listings the profile has won.',
+    ],
+    [
+      '_count',
+      'object',
+      'A JSON object containing the number of listings for this profile.',
+    ],
+  ]}
+/>
 
-```json
-// GET /api/v1/auction/profiles/<name>?_listings=true
+<Hr />
+### Query parameters
+
+Not all of the properties of a post are returned by default. You can use the following optional query parameters to include additional properties in the response.
+
+<Properties
+  title="Parameters"
+  options={[
+    [
+      '_listings',
+      'boolean',
+      'If set to `true`, returns the listings that belong to the profile.',
+    ],
+  ]}
+/>
+
+```json filename="Example with all optional query parameters"
 {
   "name": "string",
   "email": "user@example.com",
@@ -52,13 +72,14 @@ Using the optional `_flag` query parameters available it is possible to access `
 }
 ```
 
-## All entries
+<Hr />
+### All entries
 
-#### GET /api/v1/auction/profiles
+<EndpointDetails path="/auction/profiles" />
 
 This endpoint returns a list of all registered profiles.
 
-```json
+```json filename="Response"
 [
   {
     "name": "string",
@@ -83,14 +104,14 @@ This endpoint returns a list of all registered profiles.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/auction/profiles/\<name>
+<EndpointDetails path="/auction/profiles/<name>" />
 
 This endpoint returns a single registered profile.
 
-```json
-// GET /api/v1/auction/profiles/<name>
+```json filename="Response"
 {
   "name": "string",
   "email": "user@example.com",
@@ -103,22 +124,22 @@ This endpoint returns a single registered profile.
 }
 ```
 
-## Update entry media
+<Hr />
+### Update entry media
 
-#### PUT /api/v1/auction/profiles/\<name>/media
+<EndpointDetails method="PUT" path="/auction/profiles/<name>/media" />
 
-This endpoint allows for profile `avatar` images to be set or changed. The request body contains:
+This endpoint allows for profile `avatar` images to be set or changed.
 
-```json
+> Please note that profile `avatar` property must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
+
+```json filename="Request"
 {
   "avatar": "https://url.com/image.jpg" // Required
 }
 ```
 
-The response body contains:
-
-```json
-// PUT /api/v1/auction/profiles/<name>/media
+```json filename="Request"
 {
   "name": "string",
   "email": "user@example.com",
@@ -131,18 +152,16 @@ The response body contains:
 }
 ```
 
-> Please note that profile `avatar` must be a fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
+<Hr />
+### All listings by profile
 
-## All listings by profile
-
-#### GET /api/v1/auction/profiles/\<name>/listings
+<EndpointDetails path="/auction/profiles/<name>/listings" />
 
 This endpoint returns all listings created by profile.
 
 The response is the same as the [listings](./listings#all-entries) endpoint, and accepts the same optional query parameters and flags.
 
-```json
-// GET /api/v1/auction/profiles/<name>/listings
+```json filename="Response"
 [
   {
     "id": "string",
@@ -174,48 +193,28 @@ The response is the same as the [listings](./listings#all-entries) endpoint, and
 ]
 ```
 
-## All bids by profile
+<Hr />
+### All bids by profile
 
-#### GET /api/v1/auction/profiles/\<name>/bids
+<EndpointDetails path="/auction/profiles/<name>/bids" />
 
 This endpoint returns all bids made by profile.
 
-You can also use the optional `_listings` flag to include the listing data within the response. Omitting this flag will return the bid data only.
+> Use the `_listing` flag to include the associated listing's data.
 
-```json
-// GET /api/v1/auction/profiles/<name>/bids?_listings=true
+```json filename="Response"
 [
   {
     "id": "string",
     "amount": 0,
     "bidderName": "string",
-    "created": "2020-01-01T00:00:00.000Z",
-    "listing": {
-      "id": "string",
-      "title": "string",
-      "description": "string",
-      "media": ["https://url.com/image.jpg"],
-      "tags": ["string"],
-      "created": "2020-01-01T00:00:00.000Z",
-      "updated": "2020-01-01T00:00:00.000Z",
-      "endsAt": "2020-01-01T00:00:00.000Z"
-    }
+    "created": "2020-01-01T00:00:00.000Z"
   },
   {
     "id": "string",
     "amount": 0,
     "bidderName": "string",
-    "created": "2020-01-01T00:00:00.000Z",
-    "listing": {
-      "id": "string",
-      "title": "string",
-      "description": "string",
-      "media": ["https://url.com/image.jpg"],
-      "tags": ["string"],
-      "created": "2020-01-01T00:00:00.000Z",
-      "updated": "2020-01-01T00:00:00.000Z",
-      "endsAt": "2020-01-01T00:00:00.000Z"
-    }
+    "created": "2020-01-01T00:00:00.000Z"
   }
   // ...
 ]

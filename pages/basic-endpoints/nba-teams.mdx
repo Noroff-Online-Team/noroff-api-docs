@@ -1,12 +1,30 @@
+import { EndpointDetails, Hr, Properties } from '../../components'
+
 # NBA Teams
 
-This page is related to /nba-teams.
+This endpoint allows you to retrieve all NBA teams, a single NBA team by its id, or a random NBA team. The response will be an array of JSON objects if you request all teams, or a single JSON object if you request a single team or a random team.
 
-## All entries
+### The NBA Team model
 
-#### GET /api/v1/nba-teams
+<Properties
+  options={[
+    ['id', 'integer', 'The id of the team.'],
+    ['city', 'string', 'The city of the team.'],
+    ['conference', 'string', 'The conference of the team.'],
+    ['division', 'string', 'The division of the team.'],
+    ['full_name', 'string', 'The full name of the team.'],
+    ['name', 'string', 'The name of the team.'],
+  ]}
+/>
 
-```json
+<Hr />
+### All entries
+
+<EndpointDetails path="/nba-teams" />
+
+This endpoint allows you to retrieve all NBA teams.
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -28,12 +46,14 @@ This page is related to /nba-teams.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/nba-teams/\<id>
+<EndpointDetails path="/nba-teams/<id>" />
 
-```json
-// GET /api/v1/nba-teams/1
+This endpoint allows you to retrieve a single NBA team by its id.
+
+```json filename="Response"
 {
   "id": 1,
   "city": "Atlanta",
@@ -44,11 +64,14 @@ This page is related to /nba-teams.
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/nba-teams/random
+<EndpointDetails path="/nba-teams/random" />
 
-```json
+This endpoint allows you to retrieve a random NBA team.
+
+```json filename="Response"
 {
   "id": 5,
   "city": "Chicago",

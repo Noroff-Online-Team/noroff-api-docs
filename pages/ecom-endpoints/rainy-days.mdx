@@ -1,0 +1,89 @@
+import { EndpointDetails, Hr, Properties } from '../../components'
+
+# Rainy Days
+
+This endpoint allows you to retrieve all products, or a single product by its id. The response will be an array of JSON objects if you request all products, or a single JSON object if you request a single product.
+
+### The Rainy Days model
+
+<Properties
+  options={[
+    ['id', 'string', 'The id of the product.'],
+    ['title', 'string', 'The title of the product.'],
+    ['description', 'string', 'The description of the product.'],
+    ['gender', 'string', 'Whether the product is made for male or female.'],
+    ['sizes', 'array', 'A string array of the sizes of the product.'],
+    ['baseColor', 'string', 'The main color of the product.'],
+    ['price', 'float', 'The price of the product.'],
+    ['discountedPrice', 'float', 'The discounted price of the product'],
+    ['onSale', 'boolean', 'Whether the product is on sale or not.'],
+    ['image', 'string', 'The image of the product.'],
+    ['tags', 'array', 'A string array of the tags of the product.'],
+    ['favorite', 'boolean', 'Whether the product is a favorite or not.'],
+  ]}
+/>
+
+<Hr />
+### All entries
+
+<EndpointDetails path="/rainy-days" />
+
+This endpoint allows you to retrieve all products.
+
+```json filename="Response"
+[
+  {
+    "id": "b8b528fc-6c60-41f6-a5a9-9a8b27a9482a",
+    "title": "Rainy Days Akra Jacket",
+    "description": "The Women's Rainy Days Akra jacket is bound to be your new go-to water-repellent rain jacket.",
+    "gender": "Female",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "baseColor": "Red",
+    "price": 129.99,
+    "discountedPrice": 119.99,
+    "onSale": true,
+    "image": "https://api.noroff.dev/images/rainy-days/0-akra-jacket.jpg",
+    "tags": ["jacket", "womens"],
+    "favorite": true
+  },
+  {
+    "id": "97e77845-a485-4301-827f-51b673d4230f",
+    "title": "Rainy Days M83 Jacket",
+    "description": "The Women's Rainy Days M83 jacket delivers waterproof, breathable protection from head to waist. Perfect for the adventure seekers.",
+    "gender": "Female",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "baseColor": "Black",
+    "price": 109.99,
+    "discountedPrice": 99.99,
+    "onSale": true,
+    "image": "https://api.noroff.dev/images/rainy-days/1-m83-jacket.jpg",
+    "tags": ["jacket", "womens"],
+    "favorite": true
+  }
+  // ...
+]
+```
+
+<Hr />
+### Single entry
+
+<EndpointDetails path="/rainy-days/<id>" />
+
+This endpoint allows you to retrieve a single product by its id.
+
+```json filename="Response"
+{
+  "id": "b8b528fc-6c60-41f6-a5a9-9a8b27a9482a",
+  "title": "Rainy Days Akra Jacket",
+  "description": "The Women's Rainy Days Akra jacket is bound to be your new go-to water-repellent rain jacket.",
+  "gender": "Female",
+  "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+  "baseColor": "Red",
+  "price": 129.99,
+  "discountedPrice": 119.99,
+  "onSale": true,
+  "image": "https://api.noroff.dev/images/rainy-days/0-akra-jacket.jpg",
+  "tags": ["jacket", "womens"],
+  "favorite": true
+}
+```

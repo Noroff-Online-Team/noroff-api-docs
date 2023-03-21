@@ -1,12 +1,26 @@
+import { EndpointDetails, Hr, Properties } from '../../components'
+
 # Cat Facts
 
-This page is related to /cat-facts.
+This endpoint allows you to retrieve all cat facts, a single cat fact by its id, or a random cat fact. The response will be an array of JSON objects if you request all facts, or a single JSON object if you request a single fact or a random fact.
 
-## All entries
+### The Cat Fact model
 
-#### GET /api/v1/cat-facts
+<Properties
+  options={[
+    ['id', 'integer', 'The id of the cat fact.'],
+    ['text', 'string', 'The text of the cat fact.'],
+  ]}
+/>
 
-```json
+<Hr />
+### All entries
+
+<EndpointDetails path="/cat-facts" />
+
+This endpoint allows you to retrieve all cat facts.
+
+```json filename="Response"
 [
   {
     "id": 1,
@@ -20,23 +34,28 @@ This page is related to /cat-facts.
 ]
 ```
 
-## Single entry
+<Hr />
+### Single entry
 
-#### GET /api/v1/cat-facts/\<id>
+<EndpointDetails path="/cat-facts/<id>" />
 
-```json
-// GET /api/v1/cat-facts/1
+This endpoint allows you to retrieve a single cat fact by its id.
+
+```json filename="Response"
 {
   "id": 1,
   "text": "On average, cats spend 2/3 of every day sleeping"
 }
 ```
 
-## Random entry
+<Hr />
+### Random entry
 
-#### GET /api/v1/cat-facts/random
+<EndpointDetails path="/cat-facts/random" />
 
-```json
+This endpoint allows you to retrieve a random cat fact.
+
+```json filename="Response"
 {
   "id": 70,
   "text": "Genetically, cats' brains are more similar to that of a human than a dog's brain"
