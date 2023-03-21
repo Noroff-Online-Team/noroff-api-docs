@@ -3,7 +3,7 @@ import { InformationCircleIcon } from 'nextra/icons'
 const TypeToEmoji = {
   default: '💡',
   error: '🚫',
-  info: <InformationCircleIcon />,
+  info: <InformationCircleIcon className="mt-1" />,
   warning: '⚠️',
 }
 
@@ -30,7 +30,7 @@ export function Callout({
 }) {
   return (
     <div
-      className={`overflow-x-auto mt-6 flex rounded-lg border py-2 pr-4 items-center ${classes[type]}`}
+      className={`overflow-x-auto mt-6 flex rounded-lg border py-2 pr-4 ${classes[type]}`}
     >
       <div className="select-none text-xl pl-3 pr-2">{emoji}</div>
       <div className="w-full min-w-0 leading-7 [&>p]:!text-inherit">
