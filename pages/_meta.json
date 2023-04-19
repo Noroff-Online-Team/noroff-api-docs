@@ -6,5 +6,6 @@
   "basic-endpoints": "Basic Endpoints",
   "ecom-endpoints": "E-commerce Endpoints",
   "social-endpoints": "Social Endpoints",
-  "auctionhouse-endpoints": "Auction House Endpoints"
+  "auctionhouse-endpoints": "Auction House Endpoints",
+  "holidaze": "Holidaze Endpoints"
 }
