@@ -10,6 +10,7 @@ export default {
   gitTimestamp: <></>,
   sidebar: {
     toggleButton: true,
+    defaultMenuCollapseLevel: 1,
   },
   navigation: {
     prev: true,
@@ -28,7 +29,7 @@ export default {
       </svg>
       <div className="flex flex-col -space-y-1">
         <span className="font-bold">Noroff API</span>
-        <span className="text-gray-500 font-normal text-sm">Documentation</span>
+        <span className="text-sm font-normal text-gray-500">Documentation</span>
       </div>
     </>
   ),
