@@ -1,0 +1,250 @@
+import { EndpointDetails, Hr, Properties, Callout } from '../../components'
+
+# Profiles
+
+<Callout type="warning" emoji="⚠️">
+  These are authenticated endpoints. You can visit
+  [authentication](./authentication) to get an access token.
+</Callout>
+
+This endpoint allows you to manage profiles. They are the users of the Holidaze site.
+
+This is a paginated and sortable endpoint. You can use the `limit` and `offset` query parameters to paginate the results. You can also use the `sort` and `sortOrder` query parameters to sort the results. Read more about the pagination and sorting features [here](../pagination-sorting).
+
+### The Profile model
+
+<Properties
+  options={[
+    ['name', 'string', 'The unique name of the profile.'],
+    ['email', 'string', 'The email address of the profile.'],
+    ['avatar', 'string', 'The URL of the profile avatar image.'],
+    [
+      'venueManager',
+      'boolean',
+      'Whether the profile is a venue manager or not.',
+    ],
+    [
+      '_count',
+      'object',
+      'A JSON object containing the number of posts, followers and following for this profile.',
+    ],
+  ]}
+/>
+
+<Hr />
+### Query parameters
+
+Not all of the properties of a post are returned by default. You can use the following optional query parameters to include additional properties in the response.
+
+<Properties
+  title="Parameters"
+  options={[
+    [
+      '_bookings',
+      'boolean',
+      'If set to `true`, returns the bookings that are associated with the current user.',
+    ],
+    [
+      '_venues',
+      'boolean',
+      'If set to `true`, returns the venues that are associated with the current user.',
+    ],
+  ]}
+/>
+
+```json filename="Example with all optional query parameters"
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "venueManager": false,
+  "venues": [
+    {
+      "id": "string",
+      "name": "string",
+      "description": "string",
+      "media": ["string"],
+      "price": 0,
+      "maxGuests": 0,
+      "created": "string",
+      "updated": "string",
+      "meta": {
+        "wifi": true,
+        "parking": true,
+        "breakfast": true,
+        "pets": true
+      }
+    }
+  ],
+  "bookings": [
+    {
+      "id": "string",
+      "dateFrom": "string",
+      "dateTo": "string",
+      "guests": 0,
+      "created": "string",
+      "updated": "string"
+    }
+  ],
+  "_count": {
+    "venues": 0,
+    "bookings": 0
+  }
+}
+```
+
+<Hr />
+### All entries
+
+<EndpointDetails path="/holidaze/profiles" />
+
+This endpoint returns a list of all registered profiles.
+
+```json filename="Response"
+[
+  {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg",
+    "venueManager": false,
+    "_count": {
+      "venues": 0,
+      "bookings": 0
+    }
+  },
+  {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg",
+    "venueManager": false,
+    "_count": {
+      "venues": 0,
+      "bookings": 0
+    }
+  }
+]
+```
+
+<Hr />
+### Single entry
+
+<EndpointDetails path="/holidaze/profiles/<name>" />
+
+This endpoint returns a single registered profile.
+
+```json filename="Response"
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "venueManager": false,
+  "_count": {
+    "venues": 0,
+    "bookings": 0
+  }
+}
+```
+
+<Hr />
+### All bookings by profile
+
+<EndpointDetails path="/holidaze/profiles/<name>/bookings" />
+
+This endpoint returns all bookings by profile.
+
+The response is the same as the [bookings](./bookings#all-entries) endpoint, and accepts the same optional query parameters and flags.
+
+```json filename="Response"
+[
+  {
+    "id": "string",
+    "dateFrom": "string",
+    "dateTo": "string",
+    "guests": 0,
+    "created": "string",
+    "updated": "string"
+  },
+  {
+    "id": "string",
+    "dateFrom": "string",
+    "dateTo": "string",
+    "guests": 0,
+    "created": "string",
+    "updated": "string"
+  }
+  // ...
+]
+```
+
+<Hr />
+### All venues by profile
+
+<EndpointDetails path="/holidaze/profiles/<name>/venues" />
+
+This endpoint returns all venues by profile.
+
+The response is the same as the [venues](./venues#all-entries) endpoint, and accepts the same optional query parameters and flags.
+
+```json filename="Response"
+[
+  {
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "media": ["string"],
+    "price": 0,
+    "maxGuests": 0,
+    "created": "string",
+    "updated": "string",
+    "meta": {
+      "wifi": true,
+      "parking": true,
+      "breakfast": true,
+      "pets": true
+    }
+  },
+  {
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "media": ["string"],
+    "price": 0,
+    "maxGuests": 0,
+    "created": "string",
+    "updated": "string",
+    "meta": {
+      "wifi": true,
+      "parking": true,
+      "breakfast": true,
+      "pets": true
+    }
+  }
+  // ...
+]
+```
+
+<Hr />
+### Update entry media
+
+<EndpointDetails method="PUT" path="/holidaze/profiles/<name>/media" />
+
+This endpoint allows for profile `avatar` image to be set. You can use this endpoint to update the profile media, or to set it for the first time.
+
+You can also use this endpoint to remove profile media by setting the `avatar` property to `null`.
+
+> Please note that the `banner` property must be fully formed URL that links to a live and publicly accessible image. The API will check the provided URL and if it cannot be accessed publicly you will receive a 400 error response.
+
+```json filename="Request"
+{
+  "avatar": "https://url.com/image.jpg"
+}
+```
+
+```json filename="Response"
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "venueManager": false,
+},
+```
