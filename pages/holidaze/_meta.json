@@ -1,4 +1,5 @@
 {
   "authentication": "Authentication",
-  "profiles": "Profiles"
+  "profiles": "Profiles",
+  "bookings": "Bookings"
 }

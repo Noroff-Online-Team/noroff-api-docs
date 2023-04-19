@@ -1,0 +1,187 @@
+import { EndpointDetails, Hr, Properties, Callout } from '../../components'
+
+# Bookings
+
+<Callout type="warning" emoji="⚠️">
+  These are authenticated endpoints. You can visit
+  [authentication](./authentication) to get an access token.
+</Callout>
+
+This endpoint allows you to retrieve bookings.
+
+This is a paginated and sortable endpoint. You can use the `limit` and `offset` query parameters to paginate the results. You can also use the `sort` and `sortOrder` query parameters to sort the results. Read more about the pagination and sorting features [here](../pagination-sorting).
+
+### The Booking model
+
+<Properties
+  options={[
+    ['id', 'string', 'The unique id of the booking.'],
+    ['dateFrom', 'string', 'The date the booking starts.'],
+    ['dateTo', 'string', 'The date the booking ends.'],
+    ['guests', 'integer', 'The number of guests for the booking.'],
+    ['created', 'string', 'The date the booking was created.'],
+    ['updated', 'string', 'The date the booking was last updated.'],
+  ]}
+/>
+
+<Hr />
+### Query parameters
+
+Not all of the properties of a post are returned by default. You can use the following optional query parameters to include additional properties in the response.
+
+<Properties
+  title="Parameters"
+  options={[
+    [
+      '_customer',
+      'boolean',
+      'If set to `true`, returns the customer that belong to the booking.',
+    ],
+    [
+      '_venue',
+      'boolean',
+      'If set to `true`, returns the venue that belong to the booking.',
+    ],
+  ]}
+/>
+
+```json filename="Example with all optional query parameters"
+{
+  "id": "string",
+  "dateFrom": "string",
+  "dateTo": "string",
+  "guests": 0,
+  "created": "string",
+  "updated": "string",
+  "venue": {
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "media": ["string"],
+    "price": 0,
+    "maxGuests": 0,
+    "created": "string",
+    "updated": "string",
+    "meta": {
+      "wifi": true,
+      "parking": true,
+      "breakfast": true,
+      "pets": true
+    }
+  },
+  "customer": {
+    "name": "string",
+    "email": "user@example.com",
+    "avatar": "https://url.com/image.jpg"
+  }
+}
+```
+
+<Hr />
+### All entries
+
+<EndpointDetails path="/holidaze/bookings" />
+
+This endpoint returns all bookings in an array.
+
+> If you want to get all bookings by a specific profile, you can use the [bookings by profile](./profiles#all-bookings-by-profile) endpoint.
+
+```json filename="Response"
+[
+  {
+    "id": "string",
+    "dateFrom": "string",
+    "dateTo": "string",
+    "guests": 0,
+    "created": "string",
+    "updated": "string"
+  },
+  {
+    "id": "string",
+    "dateFrom": "string",
+    "dateTo": "string",
+    "guests": 0,
+    "created": "string",
+    "updated": "string"
+  }
+  // ...
+]
+```
+
+<Hr />
+### Single entry
+
+<EndpointDetails path="/holidaze/bookings/<id>" />
+
+This endpoint returns a single booking.
+
+```json filename="Response"
+{
+  "id": "string",
+  "dateFrom": "string",
+  "dateTo": "string",
+  "guests": 0,
+  "created": "string",
+  "updated": "string"
+}
+```
+
+<Hr />
+### Create entry
+
+<EndpointDetails method="POST" path="/holidaze/bookings" />
+
+This endpoint allows for the creation of a new booking.
+
+```json filename="Request"
+{
+  "dateFrom": "string", // Required - Instance of new Date()
+  "dateTo": "string", // Required - Instance of new Date()
+  "guests": 0, // Required
+  "venueId": "string" // Required - The id of the venue to book
+}
+```
+
+```json filename="Response"
+{
+  "id": "string",
+  "dateFrom": "string",
+  "dateTo": "string",
+  "guests": 0,
+  "created": "string",
+  "updated": "string"
+}
+```
+
+<Hr />
+### Update entry
+
+<EndpointDetails method="PUT" path="/holidaze/bookings/<id>" />
+
+This endpoint allows you to updating a booking.
+
+```json filename="Request"
+{
+  "dateFrom": "string", // Optional - Instance of new Date()
+  "dateTo": "string", // Optional - Instance of new Date()
+  "guests": 0 // Optional
+}
+```
+
+```json filename="Response"
+{
+  "id": "string",
+  "dateFrom": "string",
+  "dateTo": "string",
+  "guests": 0,
+  "created": "string",
+  "updated": "string"
+}
+```
+
+<Hr />
+### Delete entry
+
+<EndpointDetails method="DELETE" path="/holidaze/bookings/<id>" />
+
+This endpoint deletes an entry based on its id and returns nothing.
