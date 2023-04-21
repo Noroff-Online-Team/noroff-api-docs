@@ -21,12 +21,18 @@ This is a paginated and sortable endpoint. You can use the `limit` and `offset` 
     ['media', 'array', 'An array of media urls.'],
     ['price', 'float', 'The price of the venue.'],
     ['maxGuests', 'integer', 'The maximum number of guests.'],
+    ['rating', 'float', 'The rating of the venue.'],
     ['created', 'string', 'The date and time when the venue was created.'],
     ['updated', 'string', 'The date and time when the venue was updated.'],
     [
       'meta',
       'object',
       'A JSON object containing meta data about the venue. The object contains a boolean value for each of `wifi`, `parking`, `breakfast`, and `pets`.',
+    ],
+    [
+      'location',
+      'object',
+      'A JSON object containing the location of the venue. The object contains `address`, `city`, `zip`, `country`, and `continent`.',
     ],
   ]}
 />
@@ -56,6 +62,7 @@ Not all of the properties of a venue are returned by default. You can use the fo
   "media": ["string"],
   "price": 0,
   "maxGuests": 0,
+  "rating": 0,
   "created": "string",
   "updated": "string",
   "meta": {
@@ -63,6 +70,13 @@ Not all of the properties of a venue are returned by default. You can use the fo
     "parking": true,
     "breakfast": true,
     "pets": true
+  },
+  "location": {
+    "address": "string",
+    "city": "string",
+    "zip": "string",
+    "country": "string",
+    "continent": "string"
   },
   "owner": {
     "name": "string",
@@ -100,6 +114,7 @@ This endpoint returns all venues in an array.
     "media": ["string"],
     "price": 0,
     "maxGuests": 0,
+    "rating": 0,
     "created": "string",
     "updated": "string",
     "meta": {
@@ -107,6 +122,13 @@ This endpoint returns all venues in an array.
       "parking": true,
       "breakfast": true,
       "pets": true
+    },
+    "location": {
+      "address": "string",
+      "city": "string",
+      "zip": "string",
+      "country": "string",
+      "continent": "string"
     }
   },
   {
@@ -116,6 +138,7 @@ This endpoint returns all venues in an array.
     "media": ["string"],
     "price": 0,
     "maxGuests": 0,
+    "rating": 0,
     "created": "string",
     "updated": "string",
     "meta": {
@@ -123,6 +146,13 @@ This endpoint returns all venues in an array.
       "parking": true,
       "breakfast": true,
       "pets": true
+    },
+    "location": {
+      "address": "string",
+      "city": "string",
+      "zip": "string",
+      "country": "string",
+      "continent": "string"
     }
   }
   // ...
@@ -144,6 +174,7 @@ This endpoint returns a single venue.
   "media": ["string"],
   "price": 0,
   "maxGuests": 0,
+  "rating": 0,
   "created": "string",
   "updated": "string",
   "meta": {
@@ -151,6 +182,13 @@ This endpoint returns a single venue.
     "parking": true,
     "breakfast": true,
     "pets": true
+  },
+  "location": {
+    "address": "string",
+    "city": "string",
+    "zip": "string",
+    "country": "string",
+    "continent": "string"
   }
 }
 ```
@@ -169,11 +207,19 @@ This endpoint allows for the creation of a new venue.
   "media": ["string"], // Optional
   "price": 0, // Required
   "maxGuests": 0, // Required
+  "rating": 0, // Optional (default: 0)
   "meta": {
     "wifi": true, // Optional (default: false)
     "parking": true, // Optional (default: false)
     "breakfast": true, // Optional (default: false)
     "pets": true // Optional (default: false)
+  },
+  "location": {
+    "address": "string", // Optional (default: "Unknown")
+    "city": "string", // Optional (default: "Unknown")
+    "zip": "string", // Optional (default: "Unknown")
+    "country": "string", // Optional (default: "Unknown")
+    "continent": "string" // Optional (default: "Unknown")
   }
 }
 ```
@@ -186,6 +232,7 @@ This endpoint allows for the creation of a new venue.
   "media": ["string"],
   "price": 0,
   "maxGuests": 0,
+  "rating": 0,
   "created": "string",
   "updated": "string",
   "meta": {
@@ -193,6 +240,13 @@ This endpoint allows for the creation of a new venue.
     "parking": true,
     "breakfast": true,
     "pets": true
+  },
+  "location": {
+    "address": "string",
+    "city": "string",
+    "zip": "string",
+    "country": "string",
+    "continent": "string"
   }
 }
 ```
@@ -211,11 +265,19 @@ This endpoint allows you to updating a venue.
   "media": ["string"], // Optional
   "price": 0, // Optional
   "maxGuests": 0, // Optional
+  "rating": 0, // Optional
   "meta": {
     "wifi": true, // Optional
     "parking": true, // Optional
     "breakfast": true, // Optional
     "pets": true // Optional
+  },
+  "location": {
+    "address": "string", // Optional
+    "city": "string", // Optional
+    "zip": "string", // Optional
+    "country": "string", // Optional
+    "continent": "string" // Optional
   }
 }
 ```
@@ -228,6 +290,7 @@ This endpoint allows you to updating a venue.
   "media": ["string"],
   "price": 0,
   "maxGuests": 0,
+  "rating": 0,
   "created": "string",
   "updated": "string",
   "meta": {
@@ -235,6 +298,13 @@ This endpoint allows you to updating a venue.
     "parking": true,
     "breakfast": true,
     "pets": true
+  },
+  "location": {
+    "address": "string",
+    "city": "string",
+    "zip": "string",
+    "country": "string",
+    "continent": "string"
   }
 }
 ```
