@@ -32,7 +32,7 @@ This is a paginated and sortable endpoint. You can use the `limit` and `offset` 
     [
       'location',
       'object',
-      'A JSON object containing the location of the venue. The object contains `address`, `city`, `zip`, `country`, and `continent`.',
+      'A JSON object containing the location of the venue. The object contains `address`, `city`, `zip`, `country`, `continent`, `lat`, and `long`.',
     ],
   ]}
 />
@@ -76,7 +76,9 @@ Not all of the properties of a venue are returned by default. You can use the fo
     "city": "string",
     "zip": "string",
     "country": "string",
-    "continent": "string"
+    "continent": "string",
+    "lat": 0,
+    "lng": 0
   },
   "owner": {
     "name": "string",
@@ -128,7 +130,9 @@ This endpoint returns all venues in an array.
       "city": "string",
       "zip": "string",
       "country": "string",
-      "continent": "string"
+      "continent": "string",
+      "lat": 0,
+      "lng": 0
     }
   },
   {
@@ -152,7 +156,9 @@ This endpoint returns all venues in an array.
       "city": "string",
       "zip": "string",
       "country": "string",
-      "continent": "string"
+      "continent": "string",
+      "lat": 0,
+      "lng": 0
     }
   }
   // ...
@@ -188,7 +194,9 @@ This endpoint returns a single venue.
     "city": "string",
     "zip": "string",
     "country": "string",
-    "continent": "string"
+    "continent": "string",
+    "lat": 0,
+    "lng": 0
   }
 }
 ```
@@ -219,7 +227,9 @@ This endpoint allows for the creation of a new venue.
     "city": "string", // Optional (default: "Unknown")
     "zip": "string", // Optional (default: "Unknown")
     "country": "string", // Optional (default: "Unknown")
-    "continent": "string" // Optional (default: "Unknown")
+    "continent": "string", // Optional (default: "Unknown"),
+    "lat": 0, // Optional (default: 0)
+    "lng": 0 // Optional (default: 0)
   }
 }
 ```
@@ -246,7 +256,9 @@ This endpoint allows for the creation of a new venue.
     "city": "string",
     "zip": "string",
     "country": "string",
-    "continent": "string"
+    "continent": "string",
+    "lat": 0,
+    "lng": 0
   }
 }
 ```
@@ -277,7 +289,9 @@ This endpoint allows you to updating a venue.
     "city": "string", // Optional
     "zip": "string", // Optional
     "country": "string", // Optional
-    "continent": "string" // Optional
+    "continent": "string", // Optional
+    "lat": 0, // Optional
+    "lng": 0 // Optional
   }
 }
 ```
@@ -304,7 +318,9 @@ This endpoint allows you to updating a venue.
     "city": "string",
     "zip": "string",
     "country": "string",
-    "continent": "string"
+    "continent": "string",
+    "lat": 0,
+    "lng": 0
   }
 }
 ```
