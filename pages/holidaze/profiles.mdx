@@ -251,11 +251,33 @@ The response is the same as the [venues](./venues#all-entries) endpoint, and acc
 ```
 
 <Hr />
-### Update entry media
+### Update profile
+
+<EndpointDetails method="PUT" path="/holidaze/profiles/<name>" />
+
+This endpoint allows for the profile `venueManager` boolean to be changed.
+
+```json filename="Request"
+{
+  "venueManager": true
+}
+```
+
+```json filename="Response"
+{
+  "name": "string",
+  "email": "user@example.com",
+  "avatar": "https://url.com/image.jpg",
+  "venueManager": true,
+},
+```
+
+<Hr />
+### Update profile media
 
 <EndpointDetails method="PUT" path="/holidaze/profiles/<name>/media" />
 
-This endpoint allows for profile `avatar` image to be set. You can use this endpoint to update the profile media, or to set it for the first time.
+This endpoint allows for the profile `avatar` image to be set. You can use this endpoint to update the profile media, or to set it for the first time.
 
 You can also use this endpoint to remove profile media by setting the `avatar` property to `null`.
 
