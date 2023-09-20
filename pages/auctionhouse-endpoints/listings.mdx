@@ -3,7 +3,7 @@ import { EndpointDetails, Hr, Properties, Callout } from '../../components'
 # Listings
 
 <Callout type="warning" emoji="⚠️">
-  These are authenticated endpoints. You can visit
+  Some of these are authenticated endpoints. You can visit
   [authentication](./authentication) to get an access token.
 </Callout>
 
@@ -34,7 +34,7 @@ This is a paginated and sortable endpoint. You can use the `limit` and `offset` 
 <Hr />
 ### Query parameters
 
-Not all of the properties of a post are returned by default. You can use the following optional query parameters to include additional properties in the response.
+Not all of the properties of a listing are returned by default. You can use the following optional query parameters to include additional properties in the response.
 
 <Properties
   title="Parameters"
@@ -95,7 +95,7 @@ You can filter based on an entry in the tags array by using the `_tag` query fla
     [
       '_active',
       'boolean',
-      'If set to `true`, only active posts will be returned.',
+      'If set to `true`, only active listings will be returned.',
     ],
   ]}
 />
@@ -108,6 +108,7 @@ An example query filtering for active listings with the `my_tag` tag.
 ### All entries
 
 <EndpointDetails path="/auction/listings" />
+<Callout type="info">This endpoint does not require authentication.</Callout>
 
 This endpoint returns all listings in an array.
 
@@ -149,6 +150,8 @@ This endpoint returns all listings in an array.
 ### Single entry
 
 <EndpointDetails path="/auction/listings/<id>" />
+
+<Callout type="info">This endpoint does not require authentication.</Callout>
 
 This endpoint returns a single listing.
 
